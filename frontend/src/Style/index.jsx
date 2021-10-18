@@ -13,7 +13,7 @@ export const themeDefault = {
   fontTiny: "10px",
   fontSmall: "14px",
   fontDefault: "16px",
-  fontHeader: "20px",
+  fontMenu: "20px",
   fontLarge: "24px",
   fontExtraLarge: "40px",
 

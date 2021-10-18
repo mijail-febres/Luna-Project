@@ -41,33 +41,17 @@ export const Home = styled.div`
   color: #4A4A4A;
   cursor: pointer;
   :hover {
-      border-bottom: black solid 2px;
+      border-bottom: #E47D31 solid 2px;
       height: 100%;
   }
 `;
 
 //Search link
-export const Search = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  cursor: pointer;
-  font-size: 20px;
-  color: #4A4A4A;
-  :hover {
-      border-bottom: black solid 2px;
-      height: 100%;
-  }
+export const Search = styled(Home)`
 `;
 
 //Profile link
-export const Profile = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  cursor: pointer;
-  font-size: 20px;
-  color: #4A4A4A;
-  :hover {
-      border-bottom: black solid 2px;
-      height: 100%;
-  }
+export const Profile = styled(Home)`
 `;
 
 //Button section: 2 buttons
