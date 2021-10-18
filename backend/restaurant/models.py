@@ -3,6 +3,7 @@ from django.db import models
 
 User = get_user_model()
 
+
 def restaurant_directory_path(instance, filename):
     return f'restaurant/{instance.owner.id}/{filename}'
 

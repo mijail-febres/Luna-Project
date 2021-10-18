@@ -50,12 +50,12 @@ cleanup:
   script:
     - docker rmi -f "$CI_PIPELINE_ID":"$CI_COMMIT_REF_NAME"
     - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.lint.yml down --remove-orphans
-    - docker system prune
+    - docker system prune -f
 
 deploy:
   stage: deploy
   when: manual
   script:
     - docker-compose -f docker-compose.deploy.yml  down
-    - docker volume rm motion-team-php_frontend || true
+    - docker volume rm luna-dhmp_frontend || true
     - docker-compose -f docker-compose.deploy.yml  up -d
