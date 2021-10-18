@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormDivWrapper = styled.div`
-  width: 500px;
+  width: 900px;
   height: 500px;
 
 `;
@@ -49,7 +49,7 @@ export const InputsCombinedWrapper = styled.div`
 export const InputWrapper = styled.div`
   width: 100%;
   height: 52px;
-  margin: 20px;
+  margin: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,6 +76,7 @@ export const Input = styled.input`
   border: none;
   color: #979797;
   font-weight: 700;
+  margin: 10px; 
 
   :focus {
     outline: none;
@@ -87,6 +88,8 @@ export const InputSmall = styled.input`
   border: none;
   color: #979797;
   font-weight: 700;
+  margin: 10px; 
+
 
   :focus {
     outline: none;

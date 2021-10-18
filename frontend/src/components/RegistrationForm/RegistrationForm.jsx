@@ -17,8 +17,7 @@ const RegistrationForm = (props) => {
   const [stage, setStage] = useState(0);
   const [verificationCode, setVerificationCode] = useState("");
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
   const history = useHistory();
@@ -34,11 +33,8 @@ const RegistrationForm = (props) => {
       case "username":
         setUsername(event.target.value);
         break;
-      case "firstName":
-        setFirstName(event.target.value);
-        break;
-      case "lastName":
-        setLastName(event.target.value);
+      case "location":
+        setLocation(event.target.value);
         break;
       case "password":
         setPassword(event.target.value);
@@ -55,8 +51,7 @@ const RegistrationForm = (props) => {
       email: email,
       verificationCode: verificationCode,
       username: username,
-      firstName: firstName,
-      lastName: lastName,
+      location: location,
       password: password,
       passwordRepeat: passwordRepeat,
     };
@@ -122,8 +117,7 @@ const RegistrationForm = (props) => {
         code: verificationCode,
         password: password,
         password_repeat: passwordRepeat,
-        first_name: firstName,
-        last_name: lastName,
+        location: location,
       };
       const method = "PATCH";
       const config = {
@@ -186,20 +180,16 @@ const RegistrationForm = (props) => {
         </FormDivWrapper>
       )}
       {/* verification step */}
+
+      {/* email, verificaiton
+    username, location
+    password, password repeat */}
+
       {stage === 2 && (
         <FormDivWrapper onSubmit={handleSubmit}>
           <SignInFormWrapper>
             <SignInTitle>Verification</SignInTitle>
             <InputsCombinedWrapper>
-              <InputWrapper>
-                <Input
-                  type="text"
-                  placeholder="Verification code"
-                  value={verificationCode}
-                  name="verificationCode"
-                  onChange={handleChange}
-                />
-              </InputWrapper>
               <InputWrapperTwoPerLine>
                 <InputSmall
                   type="email"
@@ -210,25 +200,26 @@ const RegistrationForm = (props) => {
                 />
                 <InputSmall
                   type="text"
+                  placeholder="Verification code"
+                  value={verificationCode}
+                  name="verificationCode"
+                  onChange={handleChange}
+                />
+              </InputWrapperTwoPerLine>
+
+              <InputWrapperTwoPerLine>
+                <InputSmall
+                  type="text"
                   placeholder="Username"
                   value={username}
                   name="username"
                   onChange={handleChange}
                 />
-              </InputWrapperTwoPerLine>
-              <InputWrapperTwoPerLine>
                 <InputSmall
                   type="text"
-                  placeholder="First Name"
-                  value={firstName}
-                  name="firstName"
-                  onChange={handleChange}
-                />
-                <InputSmall
-                  type="text"
-                  placeholder="Last Name"
-                  value={lastName}
-                  name="lastName"
+                  placeholder="Location"
+                  value={location}
+                  name="location"
                   onChange={handleChange}
                 />
               </InputWrapperTwoPerLine>
