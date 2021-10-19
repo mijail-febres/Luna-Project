@@ -67,6 +67,14 @@ export const getUserInfo = (dispatch, token) => {
         });
 };
 
+export const setRestaurants = (restaurants) => (dispatch, getState) => {
+    const action = {
+        type: "setRestaurants",
+        payload: restaurants,
+    };
+    dispatch(action)
+};
+
 export const logOut = () => {
     return {
         type: "logOut",

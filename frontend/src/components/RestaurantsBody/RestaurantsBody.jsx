@@ -1,46 +1,61 @@
-// import React from "react";
+// This Component shows a list of restaurants arranged in columns
+// It is called like: <RestaurantBody></RestaurantBody>
+// This container can be accessed without authentication
 
-// class BodyData extends React.Component {
-//     state = {
-//       query: "",
-//       data: [],
-//       filteredData: []
-//     };
-  
-//     handleSearch = event => {
-//       const query = event.target.value;
-  
-//       this.setState(prevState => {
-//         const filteredData = prevState.data.filter(element => {
-//           return element.name.toLowerCase().includes(query.toLowerCase());
-//         });
-  
-//         return {
-//           query,
-//           filteredData
-//         };
-//       });
-//     };
-  
-//     getData = () => {
-//       fetch(`http://luna-dhmp/api/restaurants/`) //input correct URL here 
-//         .then(response => response.json())
-//         .then(data => {
-//           const { query } = this.state;
-//           const filteredData = data.filter(element => {
-//             return element.name.toLowerCase().includes(query.toLowerCase());
-//           });
-  
-//           this.setState({
-//             data,
-//             filteredData
-//           });
-//         });
-//     };
-  
-//     componentWillMount() {
-//       this.getData();
-//     }
-// }
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRestaurants } from '../../store/actions';
+import RestaurantsBodyContainer from './RestaurantsBodyStyled';
+import RestaurantPreview
+ from '../RestaurantPreview/RestaurantPreview';
 
-// export default BodyData;
+const RestaurantsBody = () => {
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        getRestaurantInformation();
+    }, []);
+
+    const getRestaurantInformation = async () => {
+        const url = 'http://luna-dhmp/api/restaurants/';
+
+        const method = 'GET'; // method
+
+        const headers = new Headers({  // headers
+            'Authorization': `Bearer ${token}`
+        });
+
+        const config = { // configuration
+            method : method,
+            headers: headers
+        }
+
+        const response = await fetch(url, config);  //fething
+        const data     = await response.json();  // getting the user
+
+        dispatch(setRestaurants(data)) // update restaurant list with middleware
+
+    }
+
+    const handleClickOnRestaurant = (index) => {
+        //redirect to page of restaurant
+    }
+
+    return(
+        <RestaurantsBodyContainer>
+            {[...Array(20).keys()].map(index =>{
+                return (
+                    <div key={index} id='restaurantContainer' onClick={index => handleClickOnRestaurant(index)}>
+                        <RestaurantPreview 
+                        restaurant_name='The blue Oyster'
+                        restaurant_address='Some place in Zürich' 
+                        restaurant_nReviews={Math.floor(Math.random()*(100))} restaurant_rating={(Math.random() * (5.0 - 1.0) + 1.0).toFixed(1)}/>
+                    </div>
+                )
+            })}
+        </RestaurantsBodyContainer>
+    )
+}
+
+export default RestaurantsBody;
