@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const FooterTopBar = styled.div`
+    z-index: 10;
     width: 100vw;
     bottom:37px;
     height:56px;
@@ -62,6 +63,7 @@ export const Instagram = styled(Facebook)`
 `;
 
 export const LineBetween = styled.img`
+  z-index: 10;
   width: 100vw;
   bottom: 36px;
   position: absolute;
@@ -69,6 +71,7 @@ export const LineBetween = styled.img`
 `;
 
 export const FooterBottomBar = styled.div`
+    z-index: 10;
     display:flex;
     align-items: center;
     height: 36px;

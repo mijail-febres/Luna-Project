@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 //Header to always show on top of website
 export const MenuBar = styled.div`
+  z-index: 10;
   height: 71px;
   width: 100vw;
   display: flex;
