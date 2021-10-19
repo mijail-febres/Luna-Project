@@ -20,11 +20,12 @@ export const LoginTitle = styled.p`
   font-size: 24px;
   line-height: 28px;
   text-transform: uppercase;
+  margin-bottom: 4%;
 `;
 
 export const LineBelowText = styled.div`
-  border: 3px solid #e47d31;
-  width: 16%;
+  border: 1px solid #e47d31;
+  width: 18%;
 `;
 
 export const ButtonLogin = styled.div`
@@ -50,6 +51,7 @@ export const InputsCombinedWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15%;
 `;
 
 export const InputWrapper = styled.div`
@@ -72,7 +74,6 @@ export const Input = styled.input`
   border: none;
   color: #979797;
   font-weight: 700;
-
 
   :focus {
     outline: none;
