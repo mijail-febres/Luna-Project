@@ -52,9 +52,9 @@ export const getUserToken = (dispatch, email, password) => {
 
 export const getUserInfo = (dispatch, token) => {
     const url = "https://luna-dhmp.propulsion-learn.ch/backend/api/users/me/";
-    const headers = new Headers({
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+    const headers = new headers({
+        "content-type": "application/json",
+        authorization: `bearer ${token}`,
     });
     const config = {
         headers,
@@ -65,6 +65,14 @@ export const getUserInfo = (dispatch, token) => {
         .then((data) => {
             dispatch(setUserInfo(data));
         });
+};
+
+export const setRestaurants = (restaurants) => (dispatch, getState) => {
+    const action = {
+        type: "setRestaurants",
+        payload: restaurants,
+    };
+    dispatch(action)
 };
 
 export const logOut = () => {
