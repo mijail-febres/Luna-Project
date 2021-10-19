@@ -56,7 +56,7 @@ class ListRestaurantsByOwnerView(ListAPIView):
     queryset = Restaurant.objects.all()
 
     def get_queryset(self):
-        return Restaurant.objects.filter(owner_id=self.kwargs['user_id'])
+        return Restaurant.objects.filter(owner_id=self.kwargs['user_id']).order_by('-created')
 
 
 class RetrieveUpdateDeleteRestaurantView(RetrieveUpdateDestroyAPIView):
