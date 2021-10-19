@@ -41,7 +41,7 @@ const LoginForm = (props) => {
           <InputWrapper>
             <Input
               type="text"
-              placeholder="Username"
+              placeholder="Email"
               value={username}
               name="username"
               onChange={handleChange}

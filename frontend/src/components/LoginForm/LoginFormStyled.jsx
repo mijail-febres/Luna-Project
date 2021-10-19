@@ -28,7 +28,7 @@ export const LineBelowText = styled.div`
   width: 18%;
 `;
 
-export const ButtonLogin = styled.div`
+export const ButtonLogin = styled.button`
   width: 280px;
   height: 60px;
   border-radius: 28px;

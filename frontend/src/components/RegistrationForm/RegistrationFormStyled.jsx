@@ -15,7 +15,7 @@ export const SignInFormWrapper = styled.form`
   justify-content: space-between;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   width: 280px;
   height: 60px;
   border-radius: 28px;

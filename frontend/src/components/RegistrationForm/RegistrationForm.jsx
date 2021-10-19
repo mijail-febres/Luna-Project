@@ -65,7 +65,7 @@ const RegistrationForm = (props) => {
     if (email) {
       console.log("email:", email);
       const url =
-        "https://motion.propulsion-home.ch/backend/api/auth/registration/";
+        "https://luna-dhmp.propulsion-learn.ch/backend/api/auth/registration/";
       const headers = new Headers({
         "Content-Type": "application/json",
       });
@@ -107,19 +107,19 @@ const RegistrationForm = (props) => {
     if (email) {
       console.log("email:", email);
       const url =
-        "https://motion.propulsion-home.ch/backend/api/auth/registration/validation/";
+        "https://luna-dhmp.propulsion-learn.ch/backend/api/auth/registration/validation/";
       const headers = new Headers({
         "Content-Type": "application/json",
       });
       const bodyRaw = {
         email: email,
-        username: username,
         code: verificationCode,
+        username: username,
         password: password,
         password_repeat: passwordRepeat,
         location: location,
       };
-      const method = "PATCH";
+      const method = "POST";
       const config = {
         method,
         headers,
