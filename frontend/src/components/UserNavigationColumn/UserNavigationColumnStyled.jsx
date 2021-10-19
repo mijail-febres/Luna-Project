@@ -1,9 +1,23 @@
 import styled from "styled-components";
 
 export const UserNavigationWrapper = styled.div`
-  width: 56px;
-  height: 56px;
+  height: 46.75px;
+  width: 232px;
   background: white;
+`;
+
+export const UserNavigationRow = styled.div`
+  width: 100%;
+  display: flex;
+  background: white;
+  /* justify-content: center; */
+  align-items: center;
+`;
+
+export const UserNavigationRowText = styled.div`
+  font-weight: 300;
+  font-size: 18px;
+  color: #303030;
 `;
 
 export const CommentIcon = styled.img`
