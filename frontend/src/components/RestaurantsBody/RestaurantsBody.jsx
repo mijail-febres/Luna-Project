@@ -1,7 +1,6 @@
 // This Component shows a list of restaurants arranged in columns
-// It is called like: <RestaurantBody token={'sometoken'}></RestaurantBody>
-// I am assuming that we already know the token for this session, and we pass it 
-// with props, in any case, I left commented the steps to recover the token
+// It is called like: <RestaurantBody></RestaurantBody>
+// This container can be accessed without authentication
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,24 +8,13 @@ import { setRestaurants } from '../../store/actions';
 import RestaurantsBodyContainer from './RestaurantsBodyStyled';
 import RestaurantPreview
  from '../RestaurantPreview/RestaurantPreview';
-// import { updateToken } from '../../store/actions/index';
 
-
-// const tokenSelector = (state) => {
-//     return state.token;
-// }
-
-const RestaurantsBody = (token) => {
+const RestaurantsBody = () => {
     const dispatch = useDispatch();
-    // const token = useSelector(tokenSelector);
 
 
     useEffect(() => {
-        // const token = localStorage.getItem('auth-token'); // get the token form localStorage
-        // if (token) {
-        //     dispatch(updateToken(token)); // updating token with hooks
-            getRestaurantInformation();
-        // }
+        getRestaurantInformation();
     }, []);
 
     const getRestaurantInformation = async () => {
@@ -46,7 +34,7 @@ const RestaurantsBody = (token) => {
         const response = await fetch(url, config);  //fething
         const data     = await response.json();  // getting the user
 
-        dispatch(setRestaurants(data)) // updating token with middleware
+        dispatch(setRestaurants(data)) // update restaurant list with middleware
 
     }
 
