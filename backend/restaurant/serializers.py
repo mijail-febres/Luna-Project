@@ -6,6 +6,7 @@ from user.serializers import ProfileSerializer
 
 class RestaurantSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
+    rating_sum = serializers.SerializerMethodField()
 
     def get_image_url(self, obj):
         try:
@@ -15,9 +16,17 @@ class RestaurantSerializer(serializers.ModelSerializer):
         except Exception:
             return None
 
+    def get_rating_sum(self, obj):
+        sum_of_ratings = 0
+        for value in obj.reviews.values():
+            sum_of_ratings += value['rating']
+        final_rating = sum_of_ratings / obj.reviews.count()
+        return round(final_rating, 1)
+
     class Meta:
         model = Restaurant
-        fields = ['id', 'name', 'category', 'country', 'city', 'street', 'zip', 'website', 'phone', 'email',
+        fields = ['id', 'name', 'rating_sum', 'category', 'country', 'city', 'street', 'zip', 'website', 'phone',
+                  'email',
                   'opening_hours', 'price_level', 'image', 'created', 'owner', 'image_url']
         read_only_fields = ['owner']
 
@@ -26,3 +35,18 @@ class RestaurantSerializer(serializers.ModelSerializer):
         representation['owner'] = ProfileSerializer(instance.owner, many=False, context=self.context).data
         representation['image'] = representation.pop('image_url')
         return representation
+
+
+class RestaurantMiniSerializer(serializers.ModelSerializer):
+    rating_sum = serializers.SerializerMethodField()
+
+    def get_rating_sum(self, obj):
+        sum_of_ratings = 0
+        for value in obj.reviews.values():
+            sum_of_ratings += value['rating']
+        final_rating = sum_of_ratings / obj.reviews.count()
+        return round(final_rating, 1)
+
+    class Meta:
+        model = Restaurant
+        fields = ['id', 'name', 'rating_sum', 'category']
