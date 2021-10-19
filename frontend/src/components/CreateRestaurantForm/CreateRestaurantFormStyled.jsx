@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {StandardButton} from "../DefaultButton/DefaultButtonStyled"
 
 export const Form = styled.div`
     width: 100vw;
@@ -144,13 +145,10 @@ export const ImageButton = styled.button`
   border: 2px solid #E47D31; //add button here later
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled(StandardButton)`
   display:flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 4%;
-  width: 15%;
-  height: 5%;
-  border: 2px solid #E47D31; //add button here later
+  bottom: 2%;
 `;
