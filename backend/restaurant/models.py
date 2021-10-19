@@ -31,3 +31,6 @@ class Restaurant(models.Model):
     image = models.ImageField(upload_to=restaurant_directory_path, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='my_restaurants')
+
+    def __str__(self):
+        return f'ID {self.id}: Restaurant owned by {self.owner}'
