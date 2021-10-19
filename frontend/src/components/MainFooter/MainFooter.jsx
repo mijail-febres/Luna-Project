@@ -14,8 +14,7 @@ import {
     Instagram,
     LineBetween,
     FooterBottomBar,
-    CopyRightImg,
-    FooterWraper
+    CopyRightImg
 } from "../MainFooter/MainFooterStyled";
 import facebook from "../../assets/facebook.svg"
 import twitter from "../../assets/twitter.svg"
