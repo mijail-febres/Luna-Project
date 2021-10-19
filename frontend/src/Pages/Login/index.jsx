@@ -1,4 +1,6 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
+import MainHeader from "../../components/MainHeader/MainHeader";
+import MainFooter from "../../components/MainFooter/MainFooter";
 import { setToken, getUserInfo } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -8,12 +10,17 @@ const LoginWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  background: #F2F2F2;
+  background: #f2f2f2;
+  flex-wrap: wrap;
 `;
 
-
-
-
+const LoginFormWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -34,7 +41,11 @@ const Login = (props) => {
 
   return (
     <LoginWrapper>
-      <LoginForm />
+      <MainHeader />
+      <LoginFormWrapper>
+        <LoginForm />
+      </LoginFormWrapper>
+      <MainFooter />
     </LoginWrapper>
   );
 };
