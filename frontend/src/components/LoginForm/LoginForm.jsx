@@ -13,12 +13,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 const LoginForm = (props) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const handleChange = (event) => {
-    if (event.target.name === "username") {
-      setUsername(event.target.value);
+    if (event.target.name === "email") {
+      setEmail(event.target.value);
     }
     if (event.target.name === "password") {
       setPassword(event.target.value);
@@ -27,8 +27,8 @@ const LoginForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (username && password) {
-      dispatch(() => getUserToken(dispatch, username, password));
+    if (email && password) {
+      dispatch(() => getUserToken(dispatch, email, password));
     }
   };
 
@@ -42,8 +42,8 @@ const LoginForm = (props) => {
             <Input
               type="text"
               placeholder="Email"
-              value={username}
-              name="username"
+              value={email}
+              name="email"
               onChange={handleChange}
             />
           </InputWrapper>
