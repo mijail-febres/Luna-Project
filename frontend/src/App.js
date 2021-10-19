@@ -8,7 +8,7 @@ import UserProfile from './Pages/UserProfile';
 import Registration from './Pages/Registration';
 import Login from './Pages/Login';
 
-const App = (props) => {
+const App = () => {
     return (
         <BrowserRouter>
             <Route exact path="/" component={Home}/>
