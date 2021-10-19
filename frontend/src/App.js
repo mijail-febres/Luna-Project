@@ -7,7 +7,6 @@ import NewRestaurant from './Pages/NewRestaurant';
 import UserProfile from './Pages/UserProfile';
 import Registration from './Pages/Registration';
 import Login from './Pages/Login';
-import StarRating from "./components/StarRating/StarRating";
 
 const App = () => {
     return (
