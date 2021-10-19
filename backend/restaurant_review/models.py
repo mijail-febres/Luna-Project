@@ -21,5 +21,4 @@ class RestaurantReview(models.Model):
     modified = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='restaurant_reviews')
     reviewed_restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE, related_name='reviews')
-    liked_by_users = models.ManyToManyField(to=User, related_name='liked_reviews', blank=True, null=True)
-
+    review_liked_by = models.ManyToManyField(to=User, related_name='liked_reviews', blank=True)

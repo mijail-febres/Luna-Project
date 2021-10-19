@@ -14,8 +14,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from rest_framework_simplejwt import views as jwt_views
+
+from user.views import CustomTokenObtainPairView
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Luna Project API",
+        default_version='v0.3',
+        description="Luna Restaurant Rating App API",
+    ),
+    public=True,  # Set to False restrict access to protected endpoints
+    permission_classes=(permissions.AllowAny,),  # Permissions for docs access
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('backend/admin/', admin.site.urls),
+    path('backend/api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('backend/api/auth/', include('registration_profile.urls')),
+    path('backend/api/auth/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('backend/api/auth/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('backend/api/auth/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_refresh'),
+    path('backend/api/restaurants/', include('restaurant.urls')),
 ]

@@ -28,7 +28,7 @@ export const setUserClicked = (user) => {
 };
 
 export const getUserToken = (dispatch, email, password) => {
-    const url = "https://motion-team-php.propulsion-learn.ch/backend/api/auth/token/";
+    const url = "https://luna-dhmp.propulsion-learn.ch/backend/api/auth/token/";
     const headers = new Headers({
         "Content-Type": "application/json",
     });
@@ -51,7 +51,7 @@ export const getUserToken = (dispatch, email, password) => {
 };
 
 export const getUserInfo = (dispatch, token) => {
-    const url = "https://motion-team-php.propulsion-learn.ch/backend/api/users/me/";
+    const url = "https://luna-dhmp.propulsion-learn.ch/backend/api/users/me/";
     const headers = new Headers({
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

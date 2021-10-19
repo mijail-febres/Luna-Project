@@ -12,4 +12,4 @@ class Comment(models.Model):
     modified = models.DateTimeField(auto_now=True)
     author_comment = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='comments')
     commented_review = models.ForeignKey(to=RestaurantReview, on_delete=models.CASCADE, related_name='comments')
-    liked_by_users = models.ManyToManyField(to=User, related_name='liked_reviews', blank=True, null=True)
+    comment_liked_by = models.ManyToManyField(to=User, related_name='liked_comments', blank=True)
