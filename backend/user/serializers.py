@@ -13,7 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             domain_name = 'https://luna-dhmp.propulsion-learn.ch'
             full_path = domain_name + obj.profile_picture.url
             return full_path
-        except:
+        except Exception:
             return None
 
     class Meta:
