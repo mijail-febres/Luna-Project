@@ -6,7 +6,7 @@ import {
   UserAboutContent,
 } from "./UserAboutStyled";
 
-const UserAbout = (dummyData) => {
+const UserAbout = () => {
   return (
     <UserAboutWrapper>
       <UserAboutTitle> ABOUT DAVID </UserAboutTitle>

@@ -19,7 +19,7 @@ const UserAboutWrapper = styled.div`
   justify-content: center;
 `;
 
-const Registration = (props) => {
+const UserProfile = (props) => {
   return (
     <UserProfilePageWrapper>
       <MainHeader />
@@ -31,4 +31,4 @@ const Registration = (props) => {
   );
 };
 
-export default Registration;
+export default UserProfile;
