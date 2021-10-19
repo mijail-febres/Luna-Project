@@ -13,10 +13,12 @@ export const themeDefault = {
   fontTiny: "10px",
   fontSmall: "14px",
   fontDefault: "16px",
-  fontBig: "22px",
+  fontMenu: "20px",
   fontLarge: "24px",
   fontExtraLarge: "40px",
 
   //border radius
   borderRadiusDefault: "28px",
+
+  fontFamilyHeader: "Helvetica"
 };
