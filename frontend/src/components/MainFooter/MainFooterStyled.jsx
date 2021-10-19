@@ -57,6 +57,7 @@ export const Google = styled(Facebook)``;
 export const Instagram = styled(Facebook)``;
 
 export const LineBetween = styled.img`
+  z-index: 10;
   width: 100vw;
   bottom: 36px;
   position: absolute;
