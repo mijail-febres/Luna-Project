@@ -53,7 +53,7 @@ export const getUserToken = (dispatch, email, password) => {
 export const getUserInfo = (dispatch, token) => {
     const url = "https://luna-dhmp.propulsion-learn.ch/backend/api/users/me/";
     const headers = new Headers({
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
     });
     const config = {
