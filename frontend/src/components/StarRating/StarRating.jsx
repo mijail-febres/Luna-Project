@@ -21,6 +21,7 @@ const StarRating = ({height, width, review, stars}) => {
     const numberStar = 5;
     const [rating, setRating] = useState(-1);
     const [svgPlot, setSvg] = useState('loading..');
+    const [svgFilled, setSvgFilled] = useState('loading..');
        
     useEffect(() => {
         const radius = height/2.0;
@@ -72,9 +73,34 @@ const StarRating = ({height, width, review, stars}) => {
 
         new_path += 'z'
 
-        if (height) {
-            setSvg(new_path) 
+        setSvg(new_path) 
+
+        // if rating is not being created
+        if (rating !== 'true') {
+            let arrayAux = partialStars(arrayPoints)
+            arrayPoints = arrayPoints.concat(arrayAux)
+            // Correct coordinates
+            for (let i=0;i<arrayPoints.length;i++) { // container coordinates
+                arrayPoints[i].y = 2.0*radius - arrayPoints[i].y
+            }
+            // filter points (only those less than the rating will stay)
+            arrayPoints = arrayPoints.filter(point => point.x <= parseFloat(stars));
+   
+            // sort points
+            arrayPoints = sortPoints(cx,cy,arrayPoints);
+
+            new_path = `M ${arrayPoints[0].x} ${arrayPoints[0].y}`;
+
+            for (let i=1;i < arrayPoints.length;i++) {
+                new_path += ` L ${arrayPoints[i].x} ${arrayPoints[i].y}`;
+            }
+
+            new_path += 'z'
+
+            setSvgFilled(new_path) 
+
         }
+
     }, []);
 
     const handleOnClick = (index) =>{
@@ -85,12 +111,28 @@ const StarRating = ({height, width, review, stars}) => {
         const det = (p1[0]-p2[0])*(p3[1]-p4[1])-(p1[1]-p2[1])*(p3[0]-p4[0]);
         const t = ((p1[0]-p3[0])*(p3[1]-p4[1])-(p1[1]-p3[1])*(p3[0]-p4[0]))/det;
         const u = ((p1[0]-p3[0])*(p1[1]-p2[1])-(p1[1]-p3[1])*(p1[0]-p2[0]))/det;
-        if (t>=0.0 && t<=1.0){
+        if ((t>=0.0 && t<=1.0) && (u>=0.0 && u <=1.0)) {
             return [p1[0]+t*(p2[0]-p1[0]),p1[1]+t*(p2[1]-p1[1])];
-        } else {
-            return [p3[0]+u*(p4[0]-p3[0]),p3[1]+u*(p4[1]-p3[1])];
         }
     } 
+
+    const partialStars = (arrayPoints, radius) => {
+        for (let i=0;i<arrayPoints.length;i++) { // returning to cartesian
+            arrayPoints[i].y = arrayPoints[i].y + 2.0*radius
+        }
+        let p3 = new Point([stars, 0.0]);
+        let p4 = new Point([stars, 2.0*radius]);
+
+        // create intersections
+        let arrayAux = [];
+        for (let i=1;i<arrayPoints.length;i++) { // returning to cartesian
+            let p1 = new Point([arrayPoints[i].x, arrayPoints[i].y])
+            let p2 = new Point([arrayPoints[i-1].x, arrayPoints[i-1].y])
+            let aux = intersection(p1,p2,p3,p4)
+            arrayAux.push(new Point(aux))
+        }
+        return arrayAux;
+    }
 
     const sortPoints = (cx,cy,arrayPoints) => {
         arrayPoints.sort((a,b) =>{

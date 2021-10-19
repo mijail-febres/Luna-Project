@@ -12,16 +12,14 @@ import StarRating from "./components/StarRating/StarRating";
 const App = () => {
     return (
         <BrowserRouter>
-        <StarRating height='50' width='300' review='true' stars='3.5' />
-            {/* <Route exact path="/" component={StarRating}/> */}
-            {/* <Route exact path="/" component={Home}/> */}
-            {/* <Route exact path="/search" component={Search}/>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/search" component={Search}/>
             <Route exact path="/restaurant" component={Restaurant}/>
             <Route exact path="/review" component={Review}/>
             <Route exact path="/newrestaurant" component={NewRestaurant}/>
             <Route exact path="/profile/:username" component={UserProfile}/>
             <Route exact path="/registration" component={Registration}/>
-            <Route exact path="/login" component={Login}/> */}
+            <Route exact path="/login" component={Login}/>
         </BrowserRouter>
     );
 };
