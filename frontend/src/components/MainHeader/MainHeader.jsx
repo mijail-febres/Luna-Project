@@ -1,63 +1,80 @@
 import React from "react";
 import {
-    MenuBar,
-    HeaderLeft,
-    LunaLogo,
-    HeaderRight,
-    Home,
-    Search,
-    Profile,
-    Buttons,
-    SignUp,
-    Line,
-    Login,
-    LineUnderHeader
+  MenuBar,
+  HeaderLeft,
+  LunaLogo,
+  HeaderRight,
+  Home,
+  Search,
+  Profile,
+  Buttons,
+  SignUp,
+  Line,
+  Login,
+  LineUnderHeader,
 } from "../MainHeader/MainHeaderStyled";
-import lunalogo from "../../assets/LUNA.png"
-import headerline from "../../assets/HeaderLine.png"
-// import { Link } from "react-router-dom";
-
-
+import lunalogo from "../../assets/LUNA.png";
+import headerline from "../../assets/HeaderLine.png";
+import { Link } from "react-router-dom";
 
 const MainHeader = () => {
+  // const homeHandler = () => {
+  //     check later how
 
-    // const homeHandler = () => {
-    //     check later how
-
-    // };
-    // const searchHandler = () => {
-    //     history.push("/search");
-    // }
-    // const profileHandler = () => {
-    //     history.push("/profile");
-    // }
-    // const signUpHandler = () => {
-    //     history.push("/registration");
-    // }
-    // const loginHandler = () => {
-    //     history.push("/login");
-    // }   
+  // };
+  // const searchHandler = () => {
+  //     history.push("/search");
+  // }
+  // const profileHandler = () => {
+  //     history.push("/profile");
+  // }
+  // const signUpHandler = () => {
+  //     history.push("/registration");
+  // }
+  // const loginHandler = () => {
+  //     history.push("/login");
+  // }
 
   return (
     <>
-    <MenuBar>
+      <MenuBar>
         <HeaderLeft>
-            <LunaLogo src={lunalogo}/>
+          <LunaLogo src={lunalogo} />
         </HeaderLeft>
 
         <HeaderRight>
-            <Home>Home</Home>
-            <Search>Search</Search>
-            <Profile>Profile</Profile>
-            <Buttons>
-                <SignUp>SIGNUP</SignUp>
-                <Line/>
-                <Login>LOGIN</Login>
-            </Buttons>
+          <Home>
+            <Link to="/home" className="mainHeaderLink">
+              Home
+            </Link>
+          </Home>
+          <Search>
+            <Link to="/search" className="mainHeaderLink">
+              Search
+            </Link>
+          </Search>
+          <Profile>
+            <Link to="/profile" className="mainHeaderLink">
+              Profile
+            </Link>
+          </Profile>
+          <Buttons>
+            <SignUp>
+              <Link to="/registration" className="mainHeaderLinkSignUpLogin">
+                SIGNUP
+              </Link>
+            </SignUp>
+            <Line />
+            <Login>
+              <Link to="/login" className="mainHeaderLinkSignUpLogin">
+                LOGIN
+              </Link>
+            </Login>
+          </Buttons>
         </HeaderRight>
-    </MenuBar>
+      </MenuBar>
 
-    <LineUnderHeader src={headerline}/>
+      <LineUnderHeader src={headerline} />
     </>
   );
 };
