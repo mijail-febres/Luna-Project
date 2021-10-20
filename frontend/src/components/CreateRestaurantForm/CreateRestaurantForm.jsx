@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 import {
   Form,
@@ -45,7 +45,7 @@ const NewRestoForm = () => {
   const [price_level, setPrice_level] = useState("");
   //   const [image, setImage] = useState("");
 
-  const history = useHistory();
+//   const history = useHistory();
 
   const handleChange = (event) => {
     switch (event.target.name) {
@@ -145,7 +145,7 @@ const NewRestoForm = () => {
 
         try {
           if (res.status === 200) {
-            history.push("/");
+            // history.push("/");
           } else {
             alert("Invalid input.");
           }
@@ -158,196 +158,198 @@ const NewRestoForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormTitle>CREATE NEW RESTAURANT</FormTitle>
-      <UnderLineTitle />
-      <InputFields>
-        <Box1>
-          <Title>Basic</Title>
-          <Tags>
-            <TagColumn1>
-              <p>Name *</p>
-            </TagColumn1>
-            <TagColumn2>
-              <p>Category *</p>
-            </TagColumn2>
-            <TagColumn3>
-              <p>Country *</p>
-            </TagColumn3>
-          </Tags>
-          <Inputs>
-            <InputColumn1
-              type="text"
-              placeholder=""
-              value={name}
-              name="name"
-              onChange={handleChange}
-            />
-            <InputColumn2
-              type="text"
-              placeholder=""
-              value={category}
-              name="category"
-              onChange={handleChange}
-            />
-            <InputColumn3
-              type="text"
-              placeholder=""
-              value={country}
-              name="country"
-              onChange={handleChange}
-            />
-          </Inputs>
-          <FieldReq>
-            <FieldReqColumn1>
-              <p>This field is required</p>
-            </FieldReqColumn1>
-            <FieldReqColumn2>
-              <p>This field is required</p>
-            </FieldReqColumn2>
-            <FieldReqColumn3>
-              <p>This field is required</p>
-            </FieldReqColumn3>
-          </FieldReq>
-        </Box1>
-        <Box2>
-          <Title>Address</Title>
-          <Tags>
-            <TagColumn1>
-              <p>Street *</p>
-            </TagColumn1>
-            <TagColumn2>
-              <p>City *</p>
-            </TagColumn2>
-            <TagColumn3>
-              <p>Zip</p>
-            </TagColumn3>
-          </Tags>
-          <Inputs>
-            <InputColumn1
-              type="text"
-              placeholder=""
-              value={street}
-              name="street"
-              onChange={handleChange}
-            />
-            <InputColumn2
-              type="text"
-              placeholder=""
-              value={city}
-              name="city"
-              onChange={handleChange}
-            />
-            <InputColumn3
-              type="text"
-              placeholder=""
-              value={zip}
-              name="zip"
-              onChange={handleChange}
-            />
-          </Inputs>
-          <FieldReq>
-            <FieldReqColumn1>
-              <p>This field is required</p>
-            </FieldReqColumn1>
-            <FieldReqColumn2>
-              <p>This field is required</p>
-            </FieldReqColumn2>
-          </FieldReq>
-        </Box2>
-        <Box3>
-          <Title>Contact</Title>
-          <Tags>
-            <TagColumn1>
-              <p>Website</p>
-            </TagColumn1>
-            <TagColumn2>
-              <p>Phone *</p>
-            </TagColumn2>
-            <TagColumn3>
-              <p>Email *</p>
-            </TagColumn3>
-          </Tags>
-          <Inputs>
-            <InputColumn1
-              type="text"
-              placeholder=""
-              value={website}
-              name="website"
-              onChange={handleChange}
-            />
-            <InputColumn2
-              type="text"
-              placeholder=""
-              value={phone}
-              name="phone"
-              onChange={handleChange}
-            />
-            <InputColumn3
-              type="text"
-              placeholder=""
-              value={email}
-              name="email"
-              onChange={handleChange}
-            />
-          </Inputs>
-          <FieldReq>
-            <FieldReqColumn2>
-              <p>This field is required</p>
-            </FieldReqColumn2>
-            <FieldReqColumn3>
-              <p>This field is required</p>
-            </FieldReqColumn3>
-          </FieldReq>
-        </Box3>
-        <Box4>
-          <Title>Details</Title>
-          <Tags>
-            <TagColumn1>
-              <p>Opening Hours *</p>
-            </TagColumn1>
-            <TagColumn2>
-              <p>Price Level</p>
-            </TagColumn2>
-            <TagColumn3>
-              <p>Image</p>
-            </TagColumn3>
-          </Tags>
-          <Inputs>
-            <InputColumn1
-              type="text"
-              placeholder=""
-              value={opening_hours}
-              name="opening_hours"
-              onChange={handleChange}
-            />
-            <SelectPrice>
-              <select
+    <form>
+      <Form onSubmit={handleSubmit}>
+        <FormTitle>CREATE NEW RESTAURANT</FormTitle>
+        <UnderLineTitle />
+        <InputFields>
+          <Box1>
+            <Title>Basic</Title>
+            <Tags>
+              <TagColumn1>
+                <p>Name *</p>
+              </TagColumn1>
+              <TagColumn2>
+                <p>Category *</p>
+              </TagColumn2>
+              <TagColumn3>
+                <p>Country *</p>
+              </TagColumn3>
+            </Tags>
+            <Inputs>
+              <InputColumn1
                 type="text"
                 placeholder=""
-                value={price_level}
-                name="price_level"
+                value={name}
+                name="name"
                 onChange={handleChange}
-              >
-                <option value="1">Select a value...</option>
-                <option value="1">$</option>
-                <option value="2">$$</option>
-                <option value="3">$$$</option>
-                <option value="4">$$$$</option>
-                <option value="5">$$$$$</option>
-              </select>
-            </SelectPrice>
-            <ImageButton>CHOOSE A FILE...</ImageButton>
-          </Inputs>
-          <FieldReq>
-            <FieldReqColumn1>
-              <p>This field is required</p>
-            </FieldReqColumn1>
-          </FieldReq>
-        </Box4>
-      </InputFields>
-      <SubmitButton>SUBMIT</SubmitButton>
-    </Form>
+              />
+              <InputColumn2
+                type="text"
+                placeholder=""
+                value={category}
+                name="category"
+                onChange={handleChange}
+              />
+              <InputColumn3
+                type="text"
+                placeholder=""
+                value={country}
+                name="country"
+                onChange={handleChange}
+              />
+            </Inputs>
+            <FieldReq>
+              <FieldReqColumn1>
+                <p>This field is required</p>
+              </FieldReqColumn1>
+              <FieldReqColumn2>
+                <p>This field is required</p>
+              </FieldReqColumn2>
+              <FieldReqColumn3>
+                <p>This field is required</p>
+              </FieldReqColumn3>
+            </FieldReq>
+          </Box1>
+          <Box2>
+            <Title>Address</Title>
+            <Tags>
+              <TagColumn1>
+                <p>Street *</p>
+              </TagColumn1>
+              <TagColumn2>
+                <p>City *</p>
+              </TagColumn2>
+              <TagColumn3>
+                <p>Zip</p>
+              </TagColumn3>
+            </Tags>
+            <Inputs>
+              <InputColumn1
+                type="text"
+                placeholder=""
+                value={street}
+                name="street"
+                onChange={handleChange}
+              />
+              <InputColumn2
+                type="text"
+                placeholder=""
+                value={city}
+                name="city"
+                onChange={handleChange}
+              />
+              <InputColumn3
+                type="text"
+                placeholder=""
+                value={zip}
+                name="zip"
+                onChange={handleChange}
+              />
+            </Inputs>
+            <FieldReq>
+              <FieldReqColumn1>
+                <p>This field is required</p>
+              </FieldReqColumn1>
+              <FieldReqColumn2>
+                <p>This field is required</p>
+              </FieldReqColumn2>
+            </FieldReq>
+          </Box2>
+          <Box3>
+            <Title>Contact</Title>
+            <Tags>
+              <TagColumn1>
+                <p>Website</p>
+              </TagColumn1>
+              <TagColumn2>
+                <p>Phone *</p>
+              </TagColumn2>
+              <TagColumn3>
+                <p>Email *</p>
+              </TagColumn3>
+            </Tags>
+            <Inputs>
+              <InputColumn1
+                type="text"
+                placeholder=""
+                value={website}
+                name="website"
+                onChange={handleChange}
+              />
+              <InputColumn2
+                type="text"
+                placeholder=""
+                value={phone}
+                name="phone"
+                onChange={handleChange}
+              />
+              <InputColumn3
+                type="text"
+                placeholder=""
+                value={email}
+                name="email"
+                onChange={handleChange}
+              />
+            </Inputs>
+            <FieldReq>
+              <FieldReqColumn2>
+                <p>This field is required</p>
+              </FieldReqColumn2>
+              <FieldReqColumn3>
+                <p>This field is required</p>
+              </FieldReqColumn3>
+            </FieldReq>
+          </Box3>
+          <Box4>
+            <Title>Details</Title>
+            <Tags>
+              <TagColumn1>
+                <p>Opening Hours *</p>
+              </TagColumn1>
+              <TagColumn2>
+                <p>Price Level</p>
+              </TagColumn2>
+              <TagColumn3>
+                <p>Image</p>
+              </TagColumn3>
+            </Tags>
+            <Inputs>
+              <InputColumn1
+                type="text"
+                placeholder=""
+                value={opening_hours}
+                name="opening_hours"
+                onChange={handleChange}
+              />
+              <SelectPrice>
+                <select
+                  type="text"
+                  placeholder=""
+                  value={price_level}
+                  name="price_level"
+                  onChange={handleChange}
+                >
+                  <option value="1">Select a value...</option>
+                  <option value="1">$</option>
+                  <option value="2">$$</option>
+                  <option value="3">$$$</option>
+                  <option value="4">$$$$</option>
+                  <option value="5">$$$$$</option>
+                </select>
+              </SelectPrice>
+              <ImageButton>CHOOSE A FILE...</ImageButton>
+            </Inputs>
+            <FieldReq>
+              <FieldReqColumn1>
+                <p>This field is required</p>
+              </FieldReqColumn1>
+            </FieldReq>
+          </Box4>
+        </InputFields>
+        <SubmitButton title="complete">SUBMIT</SubmitButton>
+      </Form>
+    </form>
   );
 };
 
