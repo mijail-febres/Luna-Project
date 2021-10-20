@@ -20,6 +20,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework_simplejwt import views as jwt_views
 
+from restaurant.views import HomeView
 from user.views import CustomTokenObtainPairView, RetrieveUpdateDeleteProfileView, SearchView
 
 schema_view = get_schema_view(
@@ -45,4 +46,5 @@ urlpatterns = [
     path('backend/api/users/', include('user.urls')),
     path('backend/api/review/comment/', include('comment.urls')),
     path('backend/api/search/', SearchView.as_view()),
+    path('backend/api/home/', HomeView.as_view()),
 ]

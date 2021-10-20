@@ -72,3 +72,14 @@ class RetrieveUpdateDeleteRestaurantView(RetrieveUpdateDestroyAPIView):
     serializer_class = RestaurantSerializer
     lookup_url_kwarg = 'id'
     permission_classes = [IsOwnerOrAdminOrReadOnly]
+
+
+class HomeView(ListAPIView):
+    serializer_class = RestaurantSerializer
+    queryset = Restaurant.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        sorted_restaurants = sorted(serializer.data, key=lambda d: d['rating_sum'], reverse=True)
+        return Response(sorted_restaurants[:4])
