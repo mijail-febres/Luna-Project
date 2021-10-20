@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import {StandardButton} from "../DefaultButton/DefaultButtonStyled"
+import {StandardButton} from "../DefaultButton/DefaultButtonStyled";
+import {ChooseFileButton} from "../DefaultButton/DefaultButtonStyled"
 
 export const Form = styled.div`
     width: 100vw;
@@ -135,14 +136,12 @@ export const SelectPrice = styled.div`
     left:35%;
 `
 
-export const ImageButton = styled.button`
+export const ImageButton = styled(ChooseFileButton)`
   display:flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  width:30%;
-  left:70%;
-  border: 2px solid #E47D31; //add button here later
+  left: 70%;
 `;
 
 export const SubmitButton = styled(StandardButton)`
