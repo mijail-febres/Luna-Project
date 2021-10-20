@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const FormDivWrapper = styled.div`
   width: 900px;
   height: 500px;
-
 `;
 
 export const SignInFormWrapper = styled.form`
