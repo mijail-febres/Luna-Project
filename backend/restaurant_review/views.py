@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -17,7 +18,7 @@ class CreateRestaurantReviewView(CreateAPIView):
     serializer_class = RestaurantReviewSerializer
 
     def post(self, request, *args, **kwargs):
-        restaurant = Restaurant.objects.get(id=kwargs['restaurant_id'])
+        restaurant = get_object_or_404(Restaurant, pk=kwargs['restaurant_id'])
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(author=self.request.user, reviewed_restaurant=restaurant)
