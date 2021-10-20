@@ -11,12 +11,14 @@ from user.serializers import CustomTokenObtainPairSerializer, ProfileSerializer
 User = get_user_model()
 
 
-class RetrieveUpdateProfileView(GenericAPIView):
+class RetrieveUpdateDeleteProfileView(GenericAPIView):
     """
     get:
     Get own profile
     patch:
     Update own profile
+    delete:
+    Delete your own profile
     """
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
