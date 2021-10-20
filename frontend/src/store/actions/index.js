@@ -75,6 +75,14 @@ export const setRestaurants = (restaurants) => (dispatch, getState) => {
     dispatch(action)
 };
 
+export const setUsers = (users) => (dispatch, getState) => {
+    const action = {
+        type: "setUsers",
+        payload: users,
+    };
+    dispatch(action)
+};
+
 export const setRestaurantRating = (rating) => (dispatch, getState) => {
     const action = {
         type: "setRestaurantRating",
