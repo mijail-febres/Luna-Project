@@ -75,6 +75,10 @@ class RetrieveUpdateDeleteRestaurantView(RetrieveUpdateDestroyAPIView):
 
 
 class HomeView(ListAPIView):
+    """
+    get:
+    List the four best rated Restaurants.
+    """
     serializer_class = RestaurantSerializer
     queryset = Restaurant.objects.all()
 
