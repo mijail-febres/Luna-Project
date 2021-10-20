@@ -94,3 +94,17 @@ class ListLikedReviewsByCurrentUserView(ListAPIView):
         user = self.request.user
         if user:
             return RestaurantReview.objects.filter(review_liked_by__exact=user)
+
+
+class ListCommentedReviewsByCurrentUserView(ListAPIView):
+    """
+    get:
+    List all reviews the currently logged in user commented on.
+    """
+    serializer_class = RestaurantReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user:
+            return RestaurantReview.objects.filter(comments__author_comment__exact=user)

@@ -11,12 +11,14 @@ from user.serializers import CustomTokenObtainPairSerializer, ProfileSerializer
 User = get_user_model()
 
 
-class RetrieveUpdateProfileView(GenericAPIView):
+class RetrieveUpdateDeleteProfileView(GenericAPIView):
     """
     get:
     Get own profile
     patch:
     Update own profile
+    delete:
+    Delete your own profile
     """
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
@@ -41,8 +43,7 @@ class RetrieveUpdateProfileView(GenericAPIView):
 class ListAllUsersView(ListAPIView):
     """
     get:
-    List all users
-    search: Filter for username by passing a string.
+    List all users. Search: Filter for username by passing a string.
     The search is case insensitive and returns all of the users containing this string in either their username,
     their first name or their last name
     Syntax for searching - ?search=<str:search_string>/
