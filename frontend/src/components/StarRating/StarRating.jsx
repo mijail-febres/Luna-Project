@@ -10,6 +10,10 @@
 
 import React, {useState, useCallback, useEffect} from "react";
 import RatingContainer from "./StarRatingStyled";
+import { useDispatch, useSelector } from 'react-redux';
+import { setRestaurantRating } from "../../store/actions";
+// import store from '../../store';
+
 class Point {
     constructor(p){
         this.x = p[0];
@@ -33,7 +37,8 @@ const StarRating = ({height, width, review, stars}) => {
     const [svgPlot, setSvg] = useState('loading..');
     const [svgFilled, setSvgFilled] = useState('loading..');
     const [flag_decimals, setFlagDecimals] = useState(true);
-       
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const radius = height/2.0;
         const cx = radius;
@@ -127,10 +132,13 @@ const StarRating = ({height, width, review, stars}) => {
             setSvgFilled(new_path2)
         }
 
+        // Set the rating of restaurant to 0
+        dispatch(setRestaurantRating(0))
     }, []);
 
     const handleOnClick = (index) =>{
-        setRating(index)    
+        setRating(index)
+        dispatch(setRestaurantRating(index + 1))
     }
 
     const intersection = (pa,pb,pc,pd) => { // intersection of line segments

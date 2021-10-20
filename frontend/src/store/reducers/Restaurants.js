@@ -1,25 +1,24 @@
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
+import { setRestaurants } from "../actions";
+import { setRestaurantRating } from "../actions";
 
 const initialState = {
   restaurantsList: null,
+  restaurantRating: 0,
 };
 
-const reducer = (state = initialState, action) => {
+const restaurants = (state = initialState, action) => {
   switch (action.type) {
     case 'setRestaurants':
-      const new_restaurantsList = {...state}
+      const new_restaurantsList = {...state};
       new_restaurantsList.restaurantsList = action.payload;
       return new_restaurantsList;
+    case 'setRestaurantRating':
+      const new_restaurantRating = {...state};
+      new_restaurantRating.restaurantRating = action.payload;
+      return new_restaurantRating;
     default:
       return state;
   }
 };
-
-// Create Middleware
-const middlewares = applyMiddleware(thunk);
-
-// Create reducer
-const restaurants = createStore(reducer, middlewares);
 
 export default restaurants;
