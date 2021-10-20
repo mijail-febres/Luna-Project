@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 
 //Header to always show on top of website
 export const MenuBar = styled.div`
@@ -9,7 +9,7 @@ export const MenuBar = styled.div`
   display: flex;
   position: absolute;
   top: 0%;
-  background: #FFFFFF;
+  background: #ffffff;
 `;
 
 export const HeaderLeft = styled.div`
@@ -37,23 +37,24 @@ export const HeaderRight = styled.div`
 
 //Home link
 export const Home = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  color: #4A4A4A;
-  cursor: pointer;
+  .mainHeaderLink {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #4a4a4a;
+    cursor: pointer;
+    text-decoration: none;
+  }
   :hover {
-      border-bottom: #E47D31 solid 2px;
-      height: 100%;
+    border-bottom: #e47d31 solid 2px;
+    height: 40%;
   }
 `;
 
 //Search link
-export const Search = styled(Home)`
-`;
+export const Search = styled(Home)``;
 
 //Profile link
-export const Profile = styled(Home)`
-`;
+export const Profile = styled(Home)``;
 
 //Button section: 2 buttons
 export const Buttons = styled.div`
@@ -65,38 +66,46 @@ export const Buttons = styled.div`
 
 //Signup button
 export const SignUp = styled.div`
-  display:flex;
+  display: flex;
   cursor: pointer;
-  color: #FFFFFF;
-  background-color: #E47D31;
+  background-color: #e47d31;
   align-items: center;
   justify-content: center;
-  width:100px;
+  width: 100px;
   height: 35px;
   border-bottom-left-radius: 40%;
   border-top-left-radius: 40%;
   cursor: pointer;
+
+  .mainHeaderLinkSignUpLogin {
+    text-decoration: none;
+    color: #ffffff;
+  }
 `;
 
 export const Line = styled.div`
   width: 3px;
-  height:40.57px;
-  border: 1px solid #FFFFFF;
-`
+  height: 40.57px;
+  border: 1px solid #ffffff;
+`;
 
 //Login button
 export const Login = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  color: #FFFFFF;
-  background-color: #E47D31;
-  width:100px;
+  color: #ffffff;
+  background-color: #e47d31;
+  width: 100px;
   height: 35px;
   border-bottom-right-radius: 40%;
   border-top-right-radius: 40%;
   cursor: pointer;
+
+  .mainHeaderLinkSignUpLogin {
+    text-decoration: none;
+    color: #ffffff;
+  }
 `;
 
 export const LineUnderHeader = styled.img`
