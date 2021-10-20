@@ -16,6 +16,14 @@ import {
 import lunalogo from "../../assets/LUNA.png";
 import headerline from "../../assets/HeaderLine.png";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+export const MainHeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+`;
 
 const MainHeader = () => {
   // const homeHandler = () => {
@@ -36,7 +44,7 @@ const MainHeader = () => {
   // }
 
   return (
-    <>
+    <MainHeaderWrapper>
       <MenuBar>
         <HeaderLeft>
           <LunaLogo src={lunalogo} />
@@ -75,7 +83,7 @@ const MainHeader = () => {
       </MenuBar>
 
       <LineUnderHeader src={headerline} />
-    </>
+    </MainHeaderWrapper>
   );
 };
 
