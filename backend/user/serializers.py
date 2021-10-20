@@ -34,3 +34,16 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Custom data you want to include
         data.update({'user': ProfileSerializer(self.user, context=self.context, many=False).data})
         return data
+
+
+class SearchSerializer(serializers.Serializer):
+    type = serializers.CharField(min_length=1, max_length=100)
+    search_string = serializers.CharField(min_length=1, max_length=500)
+
+    def validate(self, data):
+        request_type = data.get('type')
+        if request_type.lower() == 'restaurants' or request_type.lower() == 'reviews' \
+                or request_type.lower() == 'users':
+            return data
+        else:
+            raise serializers.ValidationError('Incorrect type. You must use either restaurants, reviews or users')

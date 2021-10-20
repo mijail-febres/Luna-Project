@@ -20,7 +20,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework_simplejwt import views as jwt_views
 
-from user.views import CustomTokenObtainPairView, RetrieveUpdateDeleteProfileView
+from user.views import CustomTokenObtainPairView, RetrieveUpdateDeleteProfileView, SearchView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -44,4 +44,5 @@ urlpatterns = [
     path('backend/api/me/', RetrieveUpdateDeleteProfileView.as_view()),
     path('backend/api/users/', include('user.urls')),
     path('backend/api/review/comment/', include('comment.urls')),
+    path('backend/api/search/', SearchView.as_view()),
 ]
