@@ -4,7 +4,7 @@ import restaurants from "./Restaurants";
 
 const reducer = combineReducers({
   user: userInfo,
-  restaurants: restaurants
+  restaurants: restaurants,
 });
 
 export default reducer;
