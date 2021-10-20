@@ -32,6 +32,9 @@ const RestaurantBannerWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
+  position: fixed;
+  left: 0;
+  top: 0;
 `;
 
 const RestaurantBanner = () => {

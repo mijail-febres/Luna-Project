@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const RestaurantInfoWrapper = styled.div`
-  /* position: fixed;
-  top: 0;
+  /* position: absolute; */
+  /* top: 0;
   left: 0; */
   width: 500px;
   height: 1000px;

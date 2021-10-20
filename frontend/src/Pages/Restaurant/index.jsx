@@ -17,7 +17,7 @@ function Restaurant() {
     <>
       <MainHeader />
       <RestaurantBodyWrapper>
-        {/* <RestaurantBanner /> */}
+        <RestaurantBanner />
         <RestaurantInfo />
       </RestaurantBodyWrapper>
       <MainFooter />
