@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import {StandardButton} from "../DefaultButton/DefaultButtonStyled";
-import {ChooseFileButton} from "../DefaultButton/DefaultButtonStyled"
 
 export const Form = styled.div`
     width: 100vw;
@@ -136,14 +135,44 @@ export const SelectPrice = styled.div`
     left:35%;
 `
 
-export const ImageButton = styled(ChooseFileButton)`
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 70%;
+export const ImageBox = styled.div`
+    width:30%;
+    position:absolute;
+    left:70%;
 `;
 
+export const ImageButton = styled.input`
+    position:relative;
+    z-index: 2;
+    opacity: 0;
+    text-align: right;
+    cursor: pointer;
+`;
+
+export const ImageUpload = styled.div`
+    position: relative;
+`;
+
+export const Fakefile = styled.div`
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 28px;
+    text-align: center;
+    letter-spacing: 1px;
+    background: #e47d31;
+    color: #ffffff;
+    line-height: 14px;
+    border: none;
+    width: 216px;
+    height: 38px;
+    font-size: 16px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index:1;
+`;
+  
 export const SubmitButton = styled(StandardButton)`
   display:flex;
   justify-content: center;
