@@ -45,7 +45,7 @@ const NewRestoForm = () => {
   const [price_level, setPrice_level] = useState("");
   //   const [image, setImage] = useState("");
 
-//   const history = useHistory();
+  //   const history = useHistory();
 
   const handleChange = (event) => {
     switch (event.target.name) {
@@ -104,11 +104,12 @@ const NewRestoForm = () => {
   };
 
   const handleSubmit = (event) => {
+    console.log("submitting");
     event.preventDefault();
     if (
       name &&
       category &&
-      category &&
+      country &&
       street &&
       city &&
       phone &&
@@ -120,6 +121,8 @@ const NewRestoForm = () => {
       const headers = new Headers({
         "Content-Type": "application/json",
       });
+      const token = localStorage.getItem("luna-auth-token");
+      headers.append("Authorization", `Bearer ${token}`);
       const bodyRaw = {
         name: name,
         category: category,
@@ -144,7 +147,9 @@ const NewRestoForm = () => {
         console.log("response from /restaurants/new:", res);
 
         try {
-          if (res.status === 200) {
+          if (res.status === 201) {
+            console.log("restaurant created");
+            alert("Restaurant successfully created!");
             // history.push("/");
           } else {
             alert("Invalid input.");
@@ -158,8 +163,8 @@ const NewRestoForm = () => {
   };
 
   return (
-    <form>
-      <Form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <Form>
         <FormTitle>CREATE NEW RESTAURANT</FormTitle>
         <UnderLineTitle />
         <InputFields>
