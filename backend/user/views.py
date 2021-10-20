@@ -6,7 +6,11 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.db.models import Q
 
-from user.serializers import CustomTokenObtainPairSerializer, ProfileSerializer
+from restaurant.models import Restaurant
+from restaurant.serializers import RestaurantSerializer
+from restaurant_review.models import RestaurantReview
+from restaurant_review.serializers import RestaurantReviewSerializer
+from user.serializers import CustomTokenObtainPairSerializer, ProfileSerializer, SearchSerializer
 
 User = get_user_model()
 
@@ -72,3 +76,32 @@ class SpecificUserView(RetrieveAPIView):
 class CustomTokenObtainPairView(TokenObtainPairView):
     # Replace the serializer with your custom
     serializer_class = CustomTokenObtainPairSerializer
+
+
+class SearchView(GenericAPIView):
+    """
+    get:
+    Search for either Restaurants, Reviews or Users.
+    Your JSON body must include only 2 lines: type and search_string
+    The type should be either restaurants, reviews or users
+    The search_string is whatever you want to search for
+    """
+    serializer_class = SearchSerializer
+
+    def get(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            if serializer.validated_data['type'].lower() == 'restaurants':
+                restaurants = Restaurant.objects.filter(name__icontains=serializer.validated_data['search_string'])
+                return Response(RestaurantSerializer(restaurants, many=True, context={'request': request}).data)
+            elif serializer.validated_data['type'].lower() == 'reviews':
+                reviews = RestaurantReview.objects.filter(
+                    text_content__icontains=serializer.validated_data['search_string'])
+                return Response(RestaurantReviewSerializer(reviews, many=True, context={'request': request}).data)
+            elif serializer.validated_data['type'].lower() == 'users':
+                users = User.objects.filter(Q(username__icontains=serializer.validated_data['search_string']) |
+                                            Q(first_name__icontains=serializer.validated_data['search_string']) |
+                                            Q(last_name__icontains=serializer.validated_data['search_string']))
+                return Response(ProfileSerializer(users, many=True, context={'request': request}).data)
+            else:
+                return Response(status=status.HTTP_404_NOT_FOUND)
