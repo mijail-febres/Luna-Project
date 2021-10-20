@@ -42,4 +42,5 @@ urlpatterns = [
     path('backend/api/restaurants/', include('restaurant.urls')),
     path('backend/api/reviews/', include('restaurant_review.urls')),
     path('backend/api/me/', RetrieveUpdateProfileView.as_view()),
+    path('backend/api/users/', include('user.urls')),
 ]

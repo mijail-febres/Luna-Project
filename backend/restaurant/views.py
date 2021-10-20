@@ -31,7 +31,7 @@ class CreateRestaurantView(CreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user, category=serializer.validated_data['category'].capitalize())
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
