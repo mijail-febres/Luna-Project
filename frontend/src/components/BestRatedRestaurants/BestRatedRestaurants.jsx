@@ -38,8 +38,8 @@ const BestRatedRestaurants = () => {
 
   const history = useHistory();
 
-  const handleClickOnResto = (id) => {
-    history.push("/restaurants/id");
+  const handleClickOnResto = id => {
+    history.push(`/restaurant/${id}/`);
   }
 
 
@@ -52,7 +52,7 @@ const BestRatedRestaurants = () => {
         { state.bestRated?
             state.bestRated.map((restaurant,index) =>{
             return (
-            <div key={index} id='RestaurantPreview' onClick={index => handleClickOnResto(index)}>
+            <div key={index} id='RestaurantPreview' onClick={() => handleClickOnResto(index)}>
                   <RestaurantPreview 
                   restaurant_name={restaurant.name} 
                   restaurant_address={`${restaurant.street}, ${restaurant.zip} ${restaurant.city}`} 

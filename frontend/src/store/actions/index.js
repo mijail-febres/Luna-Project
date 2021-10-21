@@ -91,6 +91,14 @@ export const setRestaurantRating = (rating) => (dispatch, getState) => {
     dispatch(action)
 };
 
+// export const setBestRated = (restaurants) => (dispatch, getState) => {
+//   const action ={
+//     type : "setBestRated",
+//     payload: restaurants,
+//   };
+//   dispatch(action)
+// };
+
 export const logOut = () => {
   return {
     type: "logOut",
