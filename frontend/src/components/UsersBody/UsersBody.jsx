@@ -3,14 +3,13 @@
 // It is called like: <UserBody></UserBody>
 // This container can be accessed without authentication
 
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { setUsers } from '../../store/actions';
 import UsersBodyContainer from './UsersBodyStyled';
-import UserPreview
- from '../UserPreview/UserPreview';
+import UserPreview from '../UserPreview/UserPreview';
 
-const UsersBody = () => {
+const UsersBody = ({usersList}) => {
     const dispatch = useDispatch();
 
 
@@ -19,7 +18,7 @@ const UsersBody = () => {
     }, []);
 
     const getUserInformation = async () => {
-        const url = 'http://luna-dhmp/api/users/list/';
+        const url = 'https://luna-dhmp.propulsion-learn.ch/backend/api/users/';
 
         const method = 'GET'; // method
 
@@ -40,19 +39,20 @@ const UsersBody = () => {
 
     return(
         <UsersBodyContainer>
-            {[...Array(20).keys()].map(index =>{
+            {usersList.map((user,index) =>{
                 return (
                     <div key={index} id='userContainer' onClick={index => handleClickOnUser(index)}>
                         <UserPreview 
-                            user_name='Laurent H.' 
-                            user_nReviews='6' 
-                            restaurant_name='Colinz Bar' 
-                            contentReview="Ugh. Don't waste your time. Pizza dough good, thin crust but ingredients so so. Side of mixed vegetables very oily and mainly bell">
+                            user_name={`${user.username}` }
+                            user_nReviews={user.total_reviews} 
+                            description={user.description}
+                        >
                         </UserPreview>
                     </div>
                 )
             })}
         </UsersBodyContainer>
+
     )
 }
 

@@ -5,7 +5,7 @@ const initialState = {
   usersList: null,
 };
 
-const users = (state = initialState, action) => {
+const userList = (state = initialState, action) => {
   switch (action.type) {
     case 'setUsers':
       const new_usersList = {...state};
@@ -16,4 +16,4 @@ const users = (state = initialState, action) => {
   }
 };
 
-export default users;
+export default userList;

@@ -5,17 +5,14 @@
 // <UserPreview user_name='Laurent H.' user_nReviews='6' restaurant_name='Colinz Bar' contentReview="Ugh. Don't waste your time. Pizza dough good, thin crust but ingredients so so. Side of mixed vegetables very oily and mainly bell"></UserPreview>
 // all data must be provided from backend
 
-import React from "react"
+import React from "react";
 import {Link} from "react-router-dom";
-import StarRating from "../StarRating/StarRating"
-import UserPreviewContainer from "./UserPreviewStyled"
-import user_picture from "../../assets/userPicture.png"
+import UserPreviewContainer from "./UserPreviewStyled";
+import user_picture from "../../assets/userPicture.png";
 
-const UserPreview = ({user_name, user_nReviews, restaurant_name, contentReview}) => {
+const UserPreview = ({user_name, user_nReviews, description})=> {
     const [showLess, setShowLess] = React.useState(true);
     const length =130;
-    const handleText = (event) => {
-    }
 
     return (
         <UserPreviewContainer image={user_picture}>
@@ -29,16 +26,7 @@ const UserPreview = ({user_name, user_nReviews, restaurant_name, contentReview})
                 </div>
             </div>
             <div id='body'>
-                <span id='restaurant_name'>{restaurant_name}</span>
-                <p id='review'>{ `${contentReview.slice(0, length)}...`}</p>
-                <div id='read_more'>
-                    <a>
-                        <Link id='link' to="/profile/">read more</Link>
-                    </a>
-                </div>
-            </div>
-            <div id='footer'>
-
+                <p id='review'>{description? `${description.slice(0, length)}...`:null} <a  ><Link id='link' to="/profile/">read more</Link></a></p>
             </div>
         </UserPreviewContainer>
     )

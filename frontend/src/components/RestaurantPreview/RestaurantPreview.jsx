@@ -5,11 +5,11 @@
 
 import StarRating from "../StarRating/StarRating"
 import RestaurantPreviewContainer from "./RestaurantPreviewStyled"
-import restaurant_picture from "../../assets/jay-wennington-restaurant.jpg"
+import default_picture from "../../assets/default-no-image.png"
 
-const RestaurantPreview = ({restaurant_name,restaurant_address,restaurant_nReviews,restaurant_rating}) => {
+const RestaurantPreview = ({restaurant_name,restaurant_address,restaurant_nReviews,restaurant_rating,restaurant_picture}) => {
     return (
-        <RestaurantPreviewContainer image={restaurant_picture}>
+        <RestaurantPreviewContainer image={restaurant_picture?restaurant_picture:default_picture}>
             <div id='header'>
                 <span id='name'>{restaurant_name}</span>
                 <span>{restaurant_address}</span>

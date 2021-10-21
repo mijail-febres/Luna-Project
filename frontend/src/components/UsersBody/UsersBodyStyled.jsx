@@ -9,7 +9,7 @@ const UsersBodyContainer = styled.div`
     align-items: center;
     flex-wrap: wrap;
     background-color: #f2f2f2;
-    border: 1px solid green;
+    overflow: auto;
     #userContainer{
         margin: 20px;
         height: 200px;

@@ -168,9 +168,7 @@ const StarRating = ({height, width, review, stars}) => {
             let pa = [someArray[i].x, someArray[i].y];
             let pb = [someArray[i-1].x, someArray[i-1].y];
             aux = intersection(pa,pb,pc,pd);
-                console.log(aux)
             if (aux.length > 0) {
-                console.log(aux)
                 arrayAux.push(new Point(aux));
             }
         }
@@ -179,7 +177,6 @@ const StarRating = ({height, width, review, stars}) => {
         let pb = [someArray[someArray.length-1].x, someArray[someArray.length-1].y];
         aux = intersection(pa,pb,pc,pd);
         if (aux.length > 0) {
-            console.log(aux)
             arrayAux.push(new Point(aux));
         }
 
