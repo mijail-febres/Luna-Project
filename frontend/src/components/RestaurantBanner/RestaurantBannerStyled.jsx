@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const RestoBannerWrapper = styled.div`
   width: 100%;
   height: 3%;
+  position: fixed;
 `;
 
 export const RestoImage = styled.img`
