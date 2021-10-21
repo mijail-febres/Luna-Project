@@ -25,6 +25,9 @@ import {
   Box3,
   Box4,
   SelectPrice,
+  ImageBox,
+  ImageUpload,
+  Fakefile,
   ImageButton,
   SubmitButton,
 } from "../CreateRestaurantForm/CreateRestaurantFormStyled";
@@ -43,7 +46,7 @@ const NewRestoForm = () => {
   const [email, setEmail] = useState("");
   const [opening_hours, setOpening_hours] = useState("");
   const [price_level, setPrice_level] = useState("");
-  //   const [image, setImage] = useState("");
+  const [image, setImage] = useState("");
 
   //   const history = useHistory();
 
@@ -87,6 +90,7 @@ const NewRestoForm = () => {
         console.log("default");
     }
 
+
     let state = {
       name: name,
       category: category,
@@ -99,9 +103,15 @@ const NewRestoForm = () => {
       email: email,
       opening_hours: opening_hours,
       price_level: price_level,
+      image: image,
     };
     console.log("state in on handleChange function", state);
   };
+
+  const handleImage = (event) => {
+    console.log("handling image", event.target.files[0]);
+    setImage(event.target.files[0])
+    }
 
   const handleSubmit = (event) => {
     console.log("submitting");
@@ -123,6 +133,8 @@ const NewRestoForm = () => {
       });
       const token = localStorage.getItem("luna-auth-token");
       headers.append("Authorization", `Bearer ${token}`);
+      const formData = new FormData();
+      formData.append("image", image);
       const bodyRaw = {
         name: name,
         category: category,
@@ -135,6 +147,7 @@ const NewRestoForm = () => {
         email: email,
         opening_hours: opening_hours,
         price_level: price_level,
+        image: formData,
       };
       const method = "POST";
       const config = {
@@ -343,7 +356,16 @@ const NewRestoForm = () => {
                   <option value="5">$$$$$</option>
                 </select>
               </SelectPrice>
-              <ImageButton>CHOOSE A FILE...</ImageButton>
+              <ImageBox>
+                <ImageUpload>
+                    <ImageButton
+                        type="file"
+                        name="image"
+                        onChange={handleImage}
+                    />
+                    <Fakefile>CHOOSE A FILE...</Fakefile>
+                </ImageUpload>
+              </ImageBox>
             </Inputs>
             <FieldReq>
               <FieldReqColumn1>
