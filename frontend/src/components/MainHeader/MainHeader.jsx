@@ -52,7 +52,7 @@ const MainHeader = () => {
 
         <HeaderRight>
           <Home>
-            <Link to="/home" className="mainHeaderLink">
+            <Link to="/" className="mainHeaderLink">
               Home
             </Link>
           </Home>
