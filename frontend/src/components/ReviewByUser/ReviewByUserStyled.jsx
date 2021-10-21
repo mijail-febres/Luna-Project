@@ -7,14 +7,25 @@ const ReviewByUserStyled = styled.div`
     font-family: Helvetica;
     font-weight: 400;
     font-size: 20px;
+    color: #4C4C4C;
 
     #header{
         width: 100%;
-        height: 23%
+        height: 23%;
+        display: flex;
+        justify-content: space-between;
+        #name{
+            font-size: 20px;
+            justify-content: space-around;
+        }
     }
     #review{
         width: 100%;
         height: 66px;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }   
 `;
 export default ReviewByUserStyled;

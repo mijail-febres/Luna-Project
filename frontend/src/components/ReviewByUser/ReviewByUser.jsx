@@ -1,3 +1,6 @@
+import ReviewByUserContainer from './ReviewByUserStyled';
+import StarRating from '../StarRating/StarRating';
+
 const ReviewByUser = ({restaurant_name, creation_date, review, rating}) => {
     return (
         <ReviewByUserContainer>
@@ -6,15 +9,14 @@ const ReviewByUser = ({restaurant_name, creation_date, review, rating}) => {
                     <span id='name'>{restaurant_name}</span>
                 </div>
                 <div id='creation'>
-                    {/* <span id='date_creation'>{creation_date}</span> */}
-                    <span id='date_creation'>01.01.2018 15:22</span>
+                    <span id='date_creation'>{creation_date}</span>
                 </div>
             </div>
             <div id='rating'>
-                <StarRating height='25' width='125' review='false' stars='3.7' />
+                <StarRating height='25' width='125' review='false' stars={rating} />
             </div>
             <div id='review'>
-                <p id='review_text'>This location at the Bahnhofstrasse is quite friendly and easily located across the street from the train station. The people there seem to be quite good and helpful in their service. </p>
+                <p id='review_text'>{review}</p>
             </div>
         </ReviewByUserContainer>
     )
