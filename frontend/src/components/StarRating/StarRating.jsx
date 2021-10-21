@@ -92,44 +92,16 @@ const StarRating = ({height, width, review, stars}) => {
         }
 
         new_path += 'z'
+            //now a square
+            new_path += `M 0 0 L 0 ${2.0*radius} L ${2.0*radius} ${2.0*radius} L ${2.0*radius} 0`
+
+            new_path += 'z'
         setSvg(new_path) 
 
         if (review!=='true'){
-            let arrayPoints = sortPoints(cx,cy,[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10]);
-
-            let copyArray = [...arrayPoints];
-
-            if (Math.abs(parseFloat(stars)-Math.floor(parseFloat(stars)))>0.0) { // Only make sense if we have decimals
-                // if rating is not being created
-                for (let i=0;i<copyArray.length;i++) { // cartesian coordinates
-                    copyArray[i].y = 2.0*radius + copyArray[i].y
-                }
-
-                let arrayAux = partialStars(copyArray,radius,local_stars)
-                copyArray = copyArray.concat(arrayAux)
-                // Correct coordinates
-                for (let i=0;i<copyArray.length;i++) { // container coordinates
-                    copyArray[i].y = copyArray[i].y - 2.0*radius;
-                }
-                // filter points (only those less than the rating will stay)
-                let floatPart = parseFloat(local_stars)-Math.floor(parseFloat(local_stars))
-                copyArray = copyArray.filter(point => point.x <= floatPart*radius*2.0);
-
-                // sort points
-                copyArray = sortPoints(cx,cy,copyArray);
-            } else {
+            if (!(Math.abs(parseFloat(stars)-Math.floor(parseFloat(stars)))>0.0)) { // Only make sense if we have decimals
                 setFlagDecimals(false)
             }
-
-            new_path2 = `M ${copyArray[0].x} ${copyArray[0].y}`;
-
-            for (let i=1;i < copyArray.length;i++) {
-                new_path2 += ` L ${copyArray[i].x} ${copyArray[i].y}`;
-            }
-
-            new_path2 += 'z'
-
-            setSvgFilled(new_path2)
         }
 
         // Set the rating of restaurant to 0
@@ -153,35 +125,7 @@ const StarRating = ({height, width, review, stars}) => {
             answer.push(y);
         }
         return answer;
-
     } 
-
-    const partialStars = (someArray, radius, local_stars) => {
-        let floatPart = parseFloat(local_stars)-Math.floor(parseFloat(local_stars))
-        let pc = [floatPart*2.0*radius, -1000.0];
-        let pd = [floatPart*2.0*radius, 1000.0];
-
-        // create intersections
-        let arrayAux = [];
-        let aux = [];
-        for (let i=1;i<someArray.length;i++) { 
-            let pa = [someArray[i].x, someArray[i].y];
-            let pb = [someArray[i-1].x, someArray[i-1].y];
-            aux = intersection(pa,pb,pc,pd);
-            if (aux.length > 0) {
-                arrayAux.push(new Point(aux));
-            }
-        }
-        //last combination to close the figure:
-        let pa = [someArray[0].x, someArray[0].y];
-        let pb = [someArray[someArray.length-1].x, someArray[someArray.length-1].y];
-        aux = intersection(pa,pb,pc,pd);
-        if (aux.length > 0) {
-            arrayAux.push(new Point(aux));
-        }
-
-        return arrayAux;
-    }
 
     const sortPoints = (cx,cy,someArray) => {
         someArray.sort((a,b) =>{
@@ -196,43 +140,49 @@ const StarRating = ({height, width, review, stars}) => {
                 {[...Array(numberStar)].map((star, index) => { 
                     return(
                         review==='true'?
-                        <div key={index} className='StarContainer' onClick={() => handleOnClick(index)}>
+                        <div 
+                            key={index} 
+                            className='StarContainer' 
+                            onClick={() => handleOnClick(index)}
+                            style = {{backgroundColor: index<=rating?'gold':'transparent'}}
+                        >
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  className="starsvg" 
-                                 fill={index<=rating?'gold':'#f2f2f2'} 
+                                 fill={'#FFFFFF'} 
                                  style={{ width: "100%", height: "100%" }}
                                  viewBox={`0 0 100% ${height}`} stroke="currentColor">
                                 <path strokeLinecap="round" 
                                 strokeLinejoin="round" 
-                                strokeWidth={1} 
+                                strokeWidth={0} 
                                 d = {svgPlot}/>
                             </svg>
                         </div> 
                         :
-                        <div key={index} className='StarContainer' onClick={() => handleOnClick(index)}>
-                            {index+1<=Math.floor(stars)?
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    className="starsvg" 
-                                    fill={'gold'} 
-                                    style={{ width: "100%", height: "100%" }}
-                                    viewBox={`0 0 100% ${height}`} stroke="currentColor">
-                                    <path strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    strokeWidth={1} 
-                                    d = {svgPlot}/>
-                                </svg>
-                            :
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    className="starsvg" 
-                                    fill={index===Math.floor(stars)&&flag_decimals?'gold':'#f2f2f2'} 
-                                    style={{ width: "100%", height: "100%" }}
-                                    viewBox={`0 0 100% ${height}`} stroke="currentColor">
-                                    <path strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    strokeWidth={1} 
-                                    d = {index===Math.floor(stars)?svgFilled:svgPlot}/>
-                                </svg>
-                            }
+                        <div 
+                            key={index} 
+                            className='StarContainer'
+                            style = {{background: 
+                                        index<Math.floor(stars)?
+                                        'linear-gradient(90deg, gold, gold)' 
+                                        :
+                                            index+1===Math.floor(stars)+1&&flag_decimals?
+                                            `linear-gradient(90deg, 
+                                                gold        ${(stars-Math.floor(stars))*100.0}%, 
+                                                transparent ${(stars-Math.floor(stars))*100.0}%)` 
+                                            :
+                                            'linear-gradient(to right, transparent, transparent)'
+                                            }}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 className="starsvg" 
+                                 fill={'#FFFFFF'} 
+                                 style={{ width: "100%", height: "100%" }}
+                                 viewBox={`0 0 100% ${height}`} stroke="currentColor">
+                                <path strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={0} 
+                                d = {svgPlot}/>
+                            </svg>
                         </div> 
                     )                
                 })}

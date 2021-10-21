@@ -8,14 +8,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import UserPreviewContainer from "./UserPreviewStyled";
-import user_picture from "../../assets/userPicture.png";
+import user_default_picture from "../../assets/default-user.jpg";
 
-const UserPreview = ({user_name, user_nReviews, description})=> {
+const UserPreview = ({user_name, user_picture, user_nReviews, description})=> {
     const [showLess, setShowLess] = React.useState(true);
     const length =130;
 
     return (
-        <UserPreviewContainer image={user_picture}>
+        <UserPreviewContainer image={user_picture?user_picture:user_default_picture}>
             <div id='header'>
                 <div id='picture'>
 
@@ -26,7 +26,7 @@ const UserPreview = ({user_name, user_nReviews, description})=> {
                 </div>
             </div>
             <div id='body'>
-                <p id='review'>{description? `${description.slice(0, length)}...`:null} <a  ><Link id='link' to="/profile/">read more</Link></a></p>
+                <p id='description'>{description? `${description.slice(0, length)}...`:''}{description? description.length>length?<a><Link id='link' to="/profile/">read more</Link></a>:'':''}</p>
             </div>
         </UserPreviewContainer>
     )

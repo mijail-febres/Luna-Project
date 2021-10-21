@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import review_picture from "../../assets/reviewPicture.png"
 
 const ReviewPreviewContainer = styled.div`
     width: 270px; 
     height: 410px;
-    box-sizing: content-box;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,9 +23,10 @@ const ReviewPreviewContainer = styled.div`
             width: 25%;
             height: 100%;
             display: flex;
-            background-image: ${`url(${review_picture})`};
+            background-image: ${({image}) =>`url(${image})`};
             background-repeat: no-repeat;
             background-size: cover;
+            background-position: center;
         }
         #reviewInfo{
             width: 75%;
@@ -53,31 +53,24 @@ const ReviewPreviewContainer = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        box-sizing: content-box;
+        align-items: center; 
+        box-sizing: border-box;
+        padding: 8px 8px 0px 8px;
         #restaurant_name {
             width: 100%;
-            height: 43.5px;
+            height: 35px;
             color: #E47D31;
             font-size: 20px;
         }
         #review {
             width: 100%;
-            max-width: 98%;
             height: 80px;
             color: #4C4C4C;
             font-size: 14px;
             font-weight: 700;
             resize: none;
             overflow: hidden;
-            border: none;
             background-color: white;
-        }
-        #read_more {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            align-items: baseline;
 
             #link {
                 color: #E47D31;
@@ -90,7 +83,6 @@ const ReviewPreviewContainer = styled.div`
                 }
                 
             }
-
         }
     }
     #footer {
@@ -102,7 +94,7 @@ const ReviewPreviewContainer = styled.div`
         align-items: center;
         #buttons_footer{
             width: 100%;
-            height: 33px;
+            height: 66px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -114,8 +106,34 @@ const ReviewPreviewContainer = styled.div`
         }
         #latest_comments {
             width: 100%;
-            height: 155px;
-            border: 1px solid green;
+            height: 122px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            #label_comments {
+                font-weight: 300;
+                font-size: 20px;
+            }
+            .comments{
+                width: 100%;
+                height: 36px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                .comment_author {
+                    color: #E47D31;
+                    font-family: Helvetica;
+                    font-weight: 700;
+                    font-size: 14px;
+                }
+                .comment_content {
+                    color: #000000;
+                    font-family: Helvetica;
+                    font-weight: 300;
+                    font-size: 14px;
+                }
+            }
         }
     }
         
