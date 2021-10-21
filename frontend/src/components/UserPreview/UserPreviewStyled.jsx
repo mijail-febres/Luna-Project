@@ -3,7 +3,7 @@ import user_picture from "../../assets/userPicture.png"
 
 const UserPreviewContainer = styled.div`
     width: 270px; 
-    height: 410px;
+    height: 192px;
     box-sizing: content-box;
     display: flex;
     flex-direction: column;
@@ -49,58 +49,33 @@ const UserPreviewContainer = styled.div`
     }
     #body{
         width: 100%;
-        height: 146px;
+        height: 117px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         box-sizing: content-box;
-        #restaurant_name {
+        font-family: Helvetica;
+        font-weight: 700;
+        font-size: 14px;
+        color: #4C4C4C;
+        #decription{
             width: 100%;
-            height: 43.5px;
+            /* :hover{
+                cursor: crosshair;
+            } */
+        }
+        #link {
             color: #E47D31;
-            font-size: 20px;
+            text-decoration: none;
+            align-content: flex-end;
+            text-align: right;
+            align-self: flex-end;
+            /* :hover{
+                cursor: pointer;
+            } */
+            
         }
-        #review {
-            width: 100%;
-            max-width: 98%;
-            height: 80px;
-            color: #4C4C4C;
-            font-size: 14px;
-            font-weight: 700;
-            resize: none;
-            overflow: hidden;
-            border: none;
-            background-color: white;
-        }
-        #read_more {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            align-items: baseline;
-
-            #link {
-                color: #E47D31;
-                text-decoration: none;
-                align-content: flex-end;
-                text-align: right;
-                align-self: flex-end;
-                :hover{
-                    cursor: pointer;
-                }
-                
-            }
-
-        }
-    }
-    #footer {
-        width: 100%;
-        height: 189px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-
     }
         
 `

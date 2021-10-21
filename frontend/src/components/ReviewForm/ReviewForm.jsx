@@ -1,14 +1,14 @@
 // This form sends a review for a restaurant
 // id_restaurant must be passed from this container parent
 // Add this form to parent like this:
-// <ReviewForm></ReviewForm>
+// <ReviewForm id_restaurant={<id>} token={token}></ReviewForm>
 import StarRating from "../StarRating/StarRating";
 import React, { useState } from "react";
 import ReviewFormContainer from "./ReviewFormStyled";
 import { SmallerButton } from "../DefaultButton/DefaultButtonStyled";
 import store from '../../store';
 
-const ReviewForm = (id_restaurant) => {
+const ReviewForm = ({id_restaurant, token}) => {
     const[contentReview,setContent] = useState('')
     const[fontColorRequired,setFontColor] = useState('red')
     const[buttonState,setButtonState] = useState(true)
@@ -32,12 +32,13 @@ const ReviewForm = (id_restaurant) => {
     const handleSubmitReview = async () => {
         let newState =store.getState();
 
-        const url = `/api/reviews/new/${id_restaurant}/`;
+        const url = `https://luna-dhmp.propulsion-learn.ch/backend/api/reviews/new/${id_restaurant}/`;
 
         const method = 'POST'; // method
 
         const headers = new Headers({  // headers
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         });
 
         const body = {  // body

@@ -1,42 +1,10 @@
 // This Component shows a list of restaurants arranged in columns
 // It is called like: <RestaurantBody></RestaurantBody>
 // This container can be accessed without authentication
-
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setRestaurants } from '../../store/actions';
 import RestaurantsBodyContainer from './RestaurantsBodyStyled';
-import RestaurantPreview
- from '../RestaurantPreview/RestaurantPreview';
+import RestaurantPreview from '../RestaurantPreview/RestaurantPreview';
 
-const RestaurantsBody = () => {
-    const dispatch = useDispatch();
-
-
-    useEffect(() => {
-        getRestaurantInformation();
-    }, []);
-
-    const getRestaurantInformation = async () => {
-        const url = 'http://luna-dhmp/api/restaurants/';
-
-        const method = 'GET'; // method
-
-        const headers = new Headers({  // headers
-            'Authorization': `Bearer ${token}`
-        });
-
-        const config = { // configuration
-            method : method,
-            headers: headers
-        }
-
-        const response = await fetch(url, config);  //fething
-        const data     = await response.json();  // getting the user
-
-        dispatch(setRestaurants(data)) // update restaurant list with middleware
-
-    }
+const RestaurantsBody = ({restaurantsList}) => {
 
     const handleClickOnRestaurant = (index) => {
         //redirect to page of restaurant
@@ -44,16 +12,23 @@ const RestaurantsBody = () => {
 
     return(
         <RestaurantsBodyContainer>
-            {[...Array(20).keys()].map(index =>{
-                return (
-                    <div key={index} id='restaurantContainer' onClick={index => handleClickOnRestaurant(index)}>
-                        <RestaurantPreview 
-                        restaurant_name='The blue Oyster'
-                        restaurant_address='Some place in Zürich' 
-                        restaurant_nReviews={Math.floor(Math.random()*(100))} restaurant_rating={(Math.random() * (5.0 - 1.0) + 1.0).toFixed(1)}/>
-                    </div>
-                )
-            })}
+            {restaurantsList?
+                restaurantsList.map((restaurant,index) =>{
+                    return (
+                        <div key={index} id='restaurantContainer' onClick={index => handleClickOnRestaurant(index)}>
+                            <RestaurantPreview 
+                            restaurant_name={restaurant.name}
+                            restaurant_address={`${restaurant.street}, ${restaurant.zip} ${restaurant.city}`} 
+                            restaurant_nReviews={restaurant.num_of_reviews}
+                            restaurant_rating = {restaurant.rating_sum}
+                            restaurant_picture = {restaurant.image_url}
+                            />
+                        </div>
+                    )
+                })
+            :
+                <div>Nothing to show</div>
+            }
         </RestaurantsBodyContainer>
     )
 }
