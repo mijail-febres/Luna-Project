@@ -25,6 +25,9 @@ import {
   Box3,
   Box4,
   SelectPrice,
+  ImageBox,
+  ImageUpload,
+  Fakefile,
   ImageButton,
   SubmitButton,
 } from "../CreateRestaurantForm/CreateRestaurantFormStyled";
@@ -43,7 +46,7 @@ const NewRestoForm = () => {
   const [email, setEmail] = useState("");
   const [opening_hours, setOpening_hours] = useState("");
   const [price_level, setPrice_level] = useState("");
-  //   const [image, setImage] = useState("");
+  const [image, setImage] = useState("");
 
   //   const history = useHistory();
 
@@ -99,8 +102,14 @@ const NewRestoForm = () => {
       email: email,
       opening_hours: opening_hours,
       price_level: price_level,
+      image: image,
     };
     console.log("state in on handleChange function", state);
+  };
+
+  const handleImage = (event) => {
+    console.log("handling image", event.target.files[0]);
+    setImage(event.target.files[0]);
   };
 
   const handleSubmit = (event) => {
@@ -118,29 +127,36 @@ const NewRestoForm = () => {
     ) {
       const url =
         "https://luna-dhmp.propulsion-learn.ch/backend/api/restaurants/new/";
-      const headers = new Headers({
-        "Content-Type": "application/json",
-      });
+
       const token = localStorage.getItem("luna-auth-token");
-      headers.append("Authorization", `Bearer ${token}`);
-      const bodyRaw = {
-        name: name,
-        category: category,
-        country: country,
-        city: city,
-        street: street,
-        zip: zip,
-        website: website,
-        phone: phone,
-        email: email,
-        opening_hours: opening_hours,
-        price_level: price_level,
-      };
+
+      const headers = new Headers({
+        Authorization: `Bearer ${token}`,
+      });
+
+      // const headers = new Headers({
+      //   "Content-Type": "application/json",
+      // });
+      // headers.append("Authorization", `Bearer ${token}`);
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("category", category);
+      formData.append("country", country);
+      formData.append("city", city);
+      formData.append("street", street);
+      formData.append("zip", zip);
+      formData.append("website", website);
+      formData.append("phone", phone);
+      formData.append("email", email);
+      formData.append("opening_hours", opening_hours);
+      formData.append("price_level", price_level);
+      formData.append("image", image);
+      
       const method = "POST";
       const config = {
         method,
         headers,
-        body: JSON.stringify(bodyRaw),
+        body: formData,
       };
       console.log(config);
       fetch(url, config).then((res) => {
@@ -343,7 +359,16 @@ const NewRestoForm = () => {
                   <option value="5">$$$$$</option>
                 </select>
               </SelectPrice>
-              <ImageButton>CHOOSE A FILE...</ImageButton>
+              <ImageBox>
+                <ImageUpload>
+                  <ImageButton
+                    type="file"
+                    name="image"
+                    onChange={handleImage}
+                  />
+                  <Fakefile>CHOOSE A FILE...</Fakefile>
+                </ImageUpload>
+              </ImageBox>
             </Inputs>
             <FieldReq>
               <FieldReqColumn1>

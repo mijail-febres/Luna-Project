@@ -36,7 +36,7 @@ const Login = (props) => {
   const tokenInGlobalState = useSelector((state) => state.user.token);
   const userInfoInGlobalState = useSelector((state) => state.user.userInfo);
   if (tokenInGlobalState && userInfoInGlobalState) {
-    props.history.push("/home");
+    props.history.push("/");
   }
 
   return (
