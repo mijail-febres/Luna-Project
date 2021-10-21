@@ -1,15 +1,15 @@
 import React from "react";
 import {
-  PostCommentDiv,
+  CreateReviewCommentDiv,
   InputComment,
   Button,
   Hide
 } from "./CreateReviewCommentStyled";
 
-const PostComment = () => {
+const CreateReviewComment = () => {
 
     return (
-    <PostCommentDiv>
+    <CreateReviewCommentDiv>
         <InputComment
         type="search"
         placeholder="Post comment"
@@ -19,8 +19,8 @@ const PostComment = () => {
         />
         <Button>POST</Button>
         <Hide>Hide</Hide>
-    </PostCommentDiv>
+    </CreateReviewCommentDiv>
     );
   };
   
-  export default PostComment;
+  export default CreateReviewComment;
