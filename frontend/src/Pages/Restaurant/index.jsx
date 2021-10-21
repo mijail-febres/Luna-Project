@@ -2,6 +2,7 @@ import React from "react";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import MainFooter from "../../components/MainFooter/MainFooter";
 import RestaurantBanner from "../../components/RestaurantBanner/RestaurantBanner";
+import FilterReviews from "../../components/FilterReviews/FilterReviews";
 // import RestaurantInfo from "../../components/RestaurantInfo/RestaurantInfo";
 import styled from "styled-components";
 
@@ -17,7 +18,9 @@ function Restaurant() {
     <>
       <MainHeader />
       <RestaurantBodyWrapper>
-        <RestaurantBanner />
+
+        {/* <RestaurantBanner /> */}
+        <FilterReviews />
         {/* <RestaurantInfo /> */}
       </RestaurantBodyWrapper>
       <MainFooter />
