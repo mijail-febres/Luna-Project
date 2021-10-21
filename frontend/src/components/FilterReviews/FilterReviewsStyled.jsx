@@ -12,7 +12,6 @@ export const SearchBar = styled.div`
   left: 23vw;
   width: 50vw;
   height: 16%;
-  justify-content: space-between;
   border: 1px solid #EBEBEB;
 `;
 
