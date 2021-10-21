@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import thumb from "../../assets/thumb-up.svg"
 
 //button for login, search, save, submit, create restaurant, register
 export const StandardButton = styled.button`
@@ -47,9 +48,29 @@ width: 120px;
 height: 31px;
 font-size: 16px;
 `
+export const LikeButton = styled.button`
+    width: 124px;
+    height: 33px;
+    font-size: 16px;
+    font-weight: 300;
+    border: none;
+    font-family: Helvetica;
+    background-color: rgba(145,145,145,0.6);
+    vertical-align: middle;
+    color: #FFFFFF;
+`
 
-export const RestaurantInfoGenericButton = styled(StandardButton)`
-width: 200px;
-height: 39px;
-font-size: 16px;
+export const LikeButtonLeft = styled(LikeButton)`
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 1px 0px 0px;
+`
+
+export const LikeButtonRight = styled(LikeButton)`
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 28px;
+    margin: 0px 0px 0px 1px;
 `

@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import restaurant_picture from "../../assets/jay-wennington-restaurant.jpg"
 
 const RestaurantPreviewContainer = styled.div`
-    /* width: 100%;
-    height: 100%; */
     width: 270px; // this dimensions should be adjusted to 100% once we know who will contain it
     height: 410px;// this dimensions should be adjusted to 100% once we know who will contain it
     box-sizing: content-box;
@@ -12,6 +9,7 @@ const RestaurantPreviewContainer = styled.div`
     justify-content: center;
     align-items: center;
     border-top: #E47D31 5px solid;
+    background-color: #FFFFFF;
 ;
     #header{
         width: 100%;
@@ -36,9 +34,10 @@ const RestaurantPreviewContainer = styled.div`
         width: 100%;
         height: 70%;
         display: flex;
-        background-image: ${`url(${restaurant_picture})`};
+        background-image: ${({image})=>`url(${image})`};
         background-repeat: no-repeat;
         background-size: cover;
+        background-size: contain;
     }
         
 `

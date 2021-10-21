@@ -9,9 +9,9 @@ const RestaurantsBodyContainer = styled.div`
     align-items: center;
     flex-wrap: wrap;
     background-color: #f2f2f2;
-    border: 1px solid green;
     #restaurantContainer{
-        margin: 10px;
+        margin: 20px;
+        box-sizing: content-box;
         :hover {
             cursor: pointer;
         }
