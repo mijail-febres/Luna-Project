@@ -10,7 +10,7 @@ import Login from "./Pages/Login";
 
 const App = () => {
   return (
-    <BrowserRouter>            
+    <BrowserRouter>        
       <Route exact path="/" component={Home} />
       <Route exact path="/search" component={Search} />
       <Route exact path="/restaurant/:id" component={Restaurant} />
