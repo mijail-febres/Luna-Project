@@ -2,7 +2,7 @@ import React from "react";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import MainFooter from "../../components/MainFooter/MainFooter";
 import RestaurantBanner from "../../components/RestaurantBanner/RestaurantBanner";
-import RestaurantInfo from "../../components/RestaurantInfo/RestaurantInfo";
+// import RestaurantInfo from "../../components/RestaurantInfo/RestaurantInfo";
 import styled from "styled-components";
 
 const RestaurantBodyWrapper = styled.div`
@@ -18,7 +18,7 @@ function Restaurant() {
       <MainHeader />
       <RestaurantBodyWrapper>
         <RestaurantBanner />
-        <RestaurantInfo />
+        {/* <RestaurantInfo /> */}
       </RestaurantBodyWrapper>
       <MainFooter />
     </>

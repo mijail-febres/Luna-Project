@@ -48,3 +48,8 @@ height: 31px;
 font-size: 16px;
 `
 
+export const RestaurantInfoGenericButton = styled(StandardButton)`
+width: 200px;
+height: 39px;
+font-size: 16px;
+`
