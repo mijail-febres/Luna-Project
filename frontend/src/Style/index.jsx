@@ -9,6 +9,8 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const themeDefault = {
+  linerGradientColor:
+    "linear-gradient(132.96deg, #C468FF 3.32%, #6E91F6 100%);",
   //font sizes
   fontTiny: "10px",
   fontSmall: "14px",
@@ -20,5 +22,5 @@ export const themeDefault = {
   //border radius
   borderRadiusDefault: "28px",
 
-  fontFamilyHeader: "Helvetica"
+  fontFamilyHeader: "Helvetica",
 };

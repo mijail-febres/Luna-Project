@@ -6,22 +6,26 @@ import {
   UserAboutContent,
 } from "./UserAboutStyled";
 
-const UserAbout = () => {
+const UserAbout = (props) => {
+  const dateJoined = new Date(props.dateJoined);
   return (
     <UserAboutWrapper>
-      <UserAboutTitle> ABOUT DAVID </UserAboutTitle>
+      <UserAboutTitle> ABOUT {props.firstName.toUpperCase()} </UserAboutTitle>
       <UserAboutItemTitle> Location </UserAboutItemTitle>
-      <UserAboutContent>Zurich, CH</UserAboutContent>
+      <UserAboutContent>{props.location}</UserAboutContent>
       <UserAboutItemTitle> Luna member since </UserAboutItemTitle>
-      <UserAboutContent>April, 2018</UserAboutContent>
+      <UserAboutContent>{`${dateJoined.getDate()} ${dateJoined.toLocaleString(
+        "default",
+        { month: "long" }
+      )} ${dateJoined.getFullYear()}`}</UserAboutContent>
       <UserAboutItemTitle> Things I love </UserAboutItemTitle>
-      <UserAboutContent>Everything</UserAboutContent>
-      <UserAboutItemTitle> Description </UserAboutItemTitle>
       <UserAboutContent>
-        Im professional photographer with an eye for details in every thing I do
-        in my live. Every time a pass by a nice restaurant i have to stop and
-        take notes
+        {Array.isArray(props.thingsUserLikes)
+          ? props.thingsUserLikes.join(", ")
+          : props.thingsUserLikes}
       </UserAboutContent>
+      <UserAboutItemTitle> Description </UserAboutItemTitle>
+      <UserAboutContent>{props.description}</UserAboutContent>
     </UserAboutWrapper>
   );
 };
