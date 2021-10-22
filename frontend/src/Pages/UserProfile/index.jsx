@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setToken, setUserInfo } from "../../store/actions";
 import backgroundImage from "../../assets/zurich.jpeg";
 import defaultNoImage from "../../assets/default-no-image.png";
+import { StandardButton } from "../../components/DefaultButton/DefaultButtonStyled";
 
 const UserProfilePageWrapper = styled.div`
   width: 100vw;
@@ -104,6 +105,11 @@ const MiddleTitle = styled.p`
   margin-bottom: 15px;
 `;
 
+const CreateRestaurantButton = styled(StandardButton)`
+  align-self: center;
+  margin-top: 30px;
+`;
+
 const UserProfile = (props) => {
   const [reviews, setReviews] = useState("");
   const [comments, setComments] = useState("");
@@ -191,6 +197,10 @@ const UserProfile = (props) => {
     }
   };
 
+  const createRestaurantRedirect = () => {
+    history.push("/newrestaurant");
+  };
+
   useEffect(() => {
     getTokenSetUser();
     getReviews();
@@ -207,7 +217,7 @@ const UserProfile = (props) => {
           src={userInfo ? userInfo.profile_picture : defaultNoImage}
         />
         {userInfo ? <h2>{`${userInfo.first_name}'s profile`}</h2> : null}
-        <UserNavigationColumn setStage={setStage} />
+        <UserNavigationColumn setStage={setStage} stage={stage} />
       </UserPictureNavBarWrapper>
       <UserBasicInfo>
         <MainName>
@@ -265,6 +275,9 @@ const UserProfile = (props) => {
                   />
                 ))
               : null}
+            <CreateRestaurantButton onClick={() => createRestaurantRedirect()}>
+              Create Restaurant
+            </CreateRestaurantButton>
           </>
         ) : null}
         {stage === 3 ? (

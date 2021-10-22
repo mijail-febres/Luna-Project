@@ -2,6 +2,10 @@ import React from "react";
 import {
   UserNavigationWrapper,
   UserNavigationRow,
+  UserNavigataionRowOne,
+  UserNavigataionRowTwo,
+  UserNavigataionRowThree,
+  UserNavigataionRowFour,
   UserNavigationRowText,
   CommentIcon,
   EditIcon,
@@ -16,22 +20,34 @@ import star from "../../assets/star.svg";
 const UserNavigationColumn = (props) => {
   return (
     <UserNavigationWrapper>
-      <UserNavigationRow onClick={() => props.setStage(0)}>
+      <UserNavigataionRowOne
+        onClick={() => props.setStage(0)}
+        stage={props.stage}
+      >
         <StarIcon src={star} alt="star" />
         <UserNavigationRowText>Reviews</UserNavigationRowText>
-      </UserNavigationRow>
-      <UserNavigationRow onClick={() => props.setStage(1)}>
+      </UserNavigataionRowOne>
+      <UserNavigataionRowTwo
+        onClick={() => props.setStage(1)}
+        stage={props.stage}
+      >
         <CommentIcon src={comment} alt="comments" />
         <UserNavigationRowText>Comments</UserNavigationRowText>
-      </UserNavigationRow>
-      <UserNavigationRow onClick={() => props.setStage(2)}>
+      </UserNavigataionRowTwo>
+      <UserNavigataionRowThree
+        onClick={() => props.setStage(2)}
+        stage={props.stage}
+      >
         <RestaurantIcon src={restaurant} alt="restaurant" />
         <UserNavigationRowText>Restaurants</UserNavigationRowText>
-      </UserNavigationRow>
-      <UserNavigationRow onClick={() => props.setStage(3)}>
+      </UserNavigataionRowThree>
+      <UserNavigataionRowFour
+        onClick={() => props.setStage(3)}
+        stage={props.stage}
+      >
         <EditIcon src={edit} alt="edit" />
         <UserNavigationRowText>Edit Profile</UserNavigationRowText>
-      </UserNavigationRow>
+      </UserNavigataionRowFour>
     </UserNavigationWrapper>
   );
 };
