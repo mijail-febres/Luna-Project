@@ -13,10 +13,37 @@ import user_default_picture from "../../assets/default-user.jpg";
 import icon_like from "../../assets/thumb-up.svg";
 import { LikeButtonLeft, LikeButtonRight } from "../DefaultButton/DefaultButtonStyled";
 
-const ReviewPreview = ({user_name, user_picture, user_nReviews, restaurant_name, contentReview, likes, comments_count, comments}) => {
+const ReviewPreview = ({review_id, user_name, user_picture, user_nReviews, restaurant_name, contentReview, likes, comments_count, comments}) => {
     const [showLess, setShowLess] = React.useState(true);
     const length =130;
-    const handleText = (event) => {
+
+    const handleOnClickLike = () => {
+        likeUnlikeReview(review_id);
+    }
+
+    const likeUnlikeReview = async (item) => {
+
+        const url = `https://luna-dhmp.propulsion-learn.ch/backend/api/reviews/like/${item}/`;
+
+        const method = 'POST'; // method
+
+        const token = localStorage.getItem("luna-auth-token");
+
+        if (token) {
+            const headers = new Headers({
+                Authorization: `Bearer ${token}`,
+            });
+
+            const config = { // configuration
+                method : method,
+                headers,
+            }
+
+            const response = await fetch(url, config);  //fething
+            const data     = await response.json();  // getting the user
+            // window.location.reload();
+        }
+
     }
 
     return (
@@ -36,7 +63,7 @@ const ReviewPreview = ({user_name, user_picture, user_nReviews, restaurant_name,
             </div>
             <div id='footer'>
                 <div id='buttons_footer'>
-                    <LikeButtonLeft id='button_left'>
+                    <LikeButtonLeft id='button_left' onClick={handleOnClickLike}>
                         <img id='icon_like' src={icon_like} alt='icon like'/>
                         <span>{`Like ${likes}`}</span>
                     </LikeButtonLeft>

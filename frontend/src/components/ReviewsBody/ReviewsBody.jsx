@@ -10,12 +10,19 @@ const ReviewsBody = ({reviewsList}) => {
         //redirect to page of user
     }
 
+    const handleClickLike = () =>{
+        //Do something
+    }
+
+    
     return(
         <ReviewsBodyContainer>
             {reviewsList.map((review,index) =>{
+                        {console.log('review', review)}
                 return (
                     <div key={index} id='reviewContainer' onClick={index => handleClickOnUser(index)}>
                         <ReviewPreview 
+                            review_id = {review.id}
                             user_name={`${review.author.username}`} 
                             user_picture={review.author.profile_picture} 
                             user_nReviews={review.author.total_reviews} 
@@ -24,6 +31,7 @@ const ReviewsBody = ({reviewsList}) => {
                             likes={review.like_count} 
                             comments_count={review.comments.length}
                             comments={review.comments}
+                            onClick ={(event) => handleClickLike(event)}
                         >
                         </ReviewPreview>
                     </div>

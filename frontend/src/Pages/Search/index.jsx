@@ -97,7 +97,6 @@ const Search = (props) => {
         setListUsers(data)
         break;
     }
-    console.log('data',data)
   }
 
   const getRestaurantsInformation = async () => {
