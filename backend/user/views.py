@@ -80,15 +80,16 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 class SearchView(GenericAPIView):
     """
-    get:
+    post:
     Search for either Restaurants, Reviews or Users.
     Your JSON body must include only 2 lines: type and search_string
     The type should be either restaurants, reviews or users
     The search_string is whatever you want to search for
     """
     serializer_class = SearchSerializer
+    permission_classes = []
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             if serializer.validated_data['type'].lower() == 'restaurants':

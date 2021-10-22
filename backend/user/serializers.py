@@ -8,6 +8,7 @@ User = get_user_model()
 class ProfileSerializer(serializers.ModelSerializer):
     profile_picture_url = serializers.SerializerMethodField()
     total_reviews = serializers.SerializerMethodField()
+    total_comments = serializers.SerializerMethodField()
 
     def get_profile_picture_url(self, obj):
         try:
@@ -20,10 +21,13 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_total_reviews(self, obj):
         return obj.restaurant_reviews.count()
 
+    def get_total_comments(self, obj):
+        return obj.comments.count()
+
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'profile_picture', 'location', 'description',
-                  'date_joined', 'things_user_likes', 'total_reviews', 'profile_picture_url']
+                  'date_joined', 'things_user_likes', 'total_reviews', 'total_comments', 'profile_picture_url']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)

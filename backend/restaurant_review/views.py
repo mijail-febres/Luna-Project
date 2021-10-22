@@ -109,3 +109,12 @@ class ListCommentedReviewsByCurrentUserView(ListAPIView):
         user = self.request.user
         if user:
             return RestaurantReview.objects.filter(comments__author_comment__exact=user)
+
+
+class ListAllReviewsView(ListAPIView):
+    """
+    get:
+    List all reviews.
+    """
+    serializer_class = RestaurantReviewSerializer
+    queryset = RestaurantReview.objects.all()
