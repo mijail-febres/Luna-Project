@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const RestaurantInfoWrapper = styled.div`
-  width: 42vw;
+  width: 42%;
   position: fixed;
-  left:55vw;
-  top: 45vh;
+  left: 55vw;
+  top: 55vh;
+  z-index: 5;
 `;
 
 export const RestaurantInfoRow = styled.div`

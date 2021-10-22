@@ -1,13 +1,10 @@
 import styled from "styled-components";
-import {RestaurantInfoGenericButton} from "../DefaultButton/DefaultButtonStyled"
+import { RestaurantInfoGenericButton } from "../DefaultButton/DefaultButtonStyled";
 
 export const FilterReviewsWrapper = styled.div`
-  width: 45vw;
+  width: 100%;
   display: flex;
-  position: fixed;
-  top:45vh;
   align-items: center;
-  left: 9vw;
 `;
 
 export const SearchBar = styled.div`
@@ -16,7 +13,7 @@ export const SearchBar = styled.div`
   align-items: center;
   width: 100%;
   height: 16%;
-  border: 1px solid #EBEBEB;
+  border: 1px solid #ebebeb;
   margin-right: 1vw;
 `;
 
@@ -29,4 +26,4 @@ export const SearchInput = styled.input`
 
 export const FilterButton = styled(RestaurantInfoGenericButton)`
   width: 120px;
-`
+`;
