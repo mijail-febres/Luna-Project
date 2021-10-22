@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { SmallerButton } from "../DefaultButton/DefaultButtonStyled";
 
 export const Form = styled.form`
-  width: 25%;
-  height: 70%;
+  width: 95%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;

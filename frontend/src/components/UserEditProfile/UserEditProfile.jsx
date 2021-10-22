@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Form,
   FormTitle,
@@ -149,6 +149,19 @@ const UserEditProfile = (props) => {
       }
     });
   };
+
+  const populateFields = () => {
+    setUsername(props.username);
+    setFirstName(props.firstName);
+    setLastName(props.lastName);
+    setEmail(props.email);
+    setLocation(props.location);
+    setPhone(props.phone);
+    setThingsILove(props.thingsILove.join(","));
+    setDescription(props.description);
+  };
+
+  useEffect(populateFields, []);
 
   return (
     <Form onSubmit={handleSubmit}>

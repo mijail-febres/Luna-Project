@@ -8,6 +8,7 @@ const ReviewByUserStyled = styled.div`
   font-weight: 400;
   font-size: 20px;
   color: #4c4c4c;
+  border-bottom: 1px solid grey;
 
   #header {
     width: 100%;

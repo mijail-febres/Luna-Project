@@ -3,11 +3,14 @@ import MainHeader from "../../components/MainHeader/MainHeader";
 import MainFooter from "../../components/MainFooter/MainFooter";
 import UserNavigationColumn from "../../components/UserNavigationColumn/UserNavigationColumn";
 import ReviewByUser from "../../components/ReviewByUser/ReviewByUser";
+import CommentByUser from "../../components/CommentByUser/CommentByUser";
+import RestaurantByUser from "../../components/RestaurantByUser/RestaurantByUser";
+import UserEditProfile from "../../components/UserEditProfile/UserEditProfile";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setToken, getUserInfo, setUserInfo } from "../../store/actions";
+import { setToken, setUserInfo } from "../../store/actions";
 import backgroundImage from "../../assets/zurich.jpeg";
 import defaultNoImage from "../../assets/default-no-image.png";
 
@@ -23,7 +26,7 @@ const UserAboutWrapper = styled.div`
   width: 20%;
   height: 30%;
   position: absolute;
-  top: 350px;
+  top: 370px;
   right: 0;
   display: flex;
   align-items: center;
@@ -80,7 +83,7 @@ const MainInfo = styled.p`
 const MiddleContentWrapper = styled.div`
   width: 50%;
   min-width: 25%;
-  height: 75%;
+  height: 54%;
   display: flex;
   overflow: scroll;
   -ms-overflow-style: none;
@@ -89,7 +92,8 @@ const MiddleContentWrapper = styled.div`
   position: absolute;
   left: 400px;
   top: 241px;
-  /* background-color: red; */
+  background-color: white;
+  padding: 10px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -230,6 +234,50 @@ const UserProfile = (props) => {
                 ))
               : null}
           </>
+        ) : null}
+        {stage === 1 ? (
+          <>
+            <MiddleTitle>COMMENTS</MiddleTitle>
+            {comments
+              ? comments.map((comment) => (
+                  <CommentByUser
+                    key={comment.id}
+                    commentedReview={comment.commented_review}
+                    creationDate={comment.created}
+                    textContent={comment.text_content}
+                  />
+                ))
+              : null}
+          </>
+        ) : null}
+        {stage === 2 ? (
+          <>
+            <MiddleTitle>RESTAURANTS</MiddleTitle>
+            {restaurants
+              ? restaurants.map((restaurant) => (
+                  <RestaurantByUser
+                    restaurantName={restaurant.name}
+                    rating={restaurant.rating_sum}
+                    city={restaurant.city}
+                    country={restaurant.country}
+                    street={restaurant.street}
+                    openingHours={restaurant.opening_hours}
+                  />
+                ))
+              : null}
+          </>
+        ) : null}
+        {stage === 3 ? (
+          <UserEditProfile
+            username={userInfo ? userInfo.username : ""}
+            firstName={userInfo.first_name}
+            lastName={userInfo.last_name}
+            email={userInfo.email}
+            location={userInfo.location}
+            phone={userInfo.phone}
+            thingsILove={userInfo.things_user_likes}
+            description={userInfo.description}
+          />
         ) : null}
       </MiddleContentWrapper>
       <UserAboutWrapper>
