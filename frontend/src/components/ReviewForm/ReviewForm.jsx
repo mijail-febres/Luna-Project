@@ -6,56 +6,59 @@ import StarRating from "../StarRating/StarRating";
 import React, { useState } from "react";
 import ReviewFormContainer from "./ReviewFormStyled";
 import { SmallerButton } from "../DefaultButton/DefaultButtonStyled";
-import store from '../../store';
+import store from "../../store";
 
-const ReviewForm = ({id_restaurant, token}) => {
-    const[contentReview,setContent] = useState('')
-    const[fontColorRequired,setFontColor] = useState('red')
-    const[buttonState,setButtonState] = useState(true)
+const ReviewForm = ({ id_restaurant }) => {
+  const [contentReview, setContent] = useState("");
+  const [fontColorRequired, setFontColor] = useState("red");
+  const [buttonState, setButtonState] = useState(true);
+  const token = localStorage.getItem("luna-auth-token");
 
+  const ta_placehoder =
+    "Your review helps others learn about great local bussinesses.\n" +
+    "Please, dont't review this bussiness if you received a freebie for writing this review,\n" +
+    "or if you're connected in any way to the owner or employees";
 
-    const ta_placehoder = 'Your review helps others learn about great local bussinesses.\n'
-                        + 'Please, dont\'t review this bussiness if you received a freebie for writing this review,\n'
-                        + 'or if you\'re connected in any way to the owner or employees';
-
-    const handleText = (event) => {
-        setContent(event.target.value);
-        if (event.target.value === '') {
-            setFontColor('red')
-            setButtonState(true)
-        } else {
-            setFontColor('#F8F8F8')
-            setButtonState(false)
-        }
+  const handleText = (event) => {
+    setContent(event.target.value);
+    if (event.target.value === "") {
+      setFontColor("red");
+      setButtonState(true);
+    } else {
+      setFontColor("#F8F8F8");
+      setButtonState(false);
     }
+  };
 
-    const handleSubmitReview = async () => {
-        let newState =store.getState();
+  const handleSubmitReview = async () => {
+    let newState = store.getState();
 
-        const url = `https://luna-dhmp.propulsion-learn.ch/backend/api/reviews/new/${id_restaurant}/`;
+    const url = `https://luna-dhmp.propulsion-learn.ch/backend/api/reviews/new/${id_restaurant}/`;
 
-        const method = 'POST'; // method
+    const method = "POST"; // method
 
-        const headers = new Headers({  // headers
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        });
+    const headers = new Headers({
+      // headers
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    });
 
-        const body = {  // body
-            'text_content': contentReview,
-            'rating': newState.restaurants.restaurantRating, // change this
-        }
+    const body = {
+      // body
+      text_content: contentReview,
+      rating: newState.restaurants.restaurantRating, // change this
+    };
 
-        const config = { // configuration
-            method : method,
-            headers: headers,
-            body : JSON.stringify(body)
-        }
+    const config = {
+      // configuration
+      method: method,
+      headers: headers,
+      body: JSON.stringify(body),
+    };
 
-        const response = await fetch(url, config);  //fething
-        const data     = await response.json();  // getting the user
-
-    }
+    const response = await fetch(url, config); //fething
+    const data = await response.json(); // getting the user
+  };
 
     return (
         <ReviewFormContainer>

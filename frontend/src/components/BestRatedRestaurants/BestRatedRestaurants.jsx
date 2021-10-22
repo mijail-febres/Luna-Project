@@ -7,30 +7,29 @@ import {
   BestRated,
   FormTitle,
   UnderLineTitle,
-  BestRatedBody
-} from "../BestRatedRestaurants/BestRatedRestaurantsStyled"
-
+  BestRatedBody,
+} from "../BestRatedRestaurants/BestRatedRestaurantsStyled";
 
 const BestRatedRestaurants = () => {
   const [bestRated, setBestRated] = useState("");
 
   useEffect(() => {
-      getBestRestaurants();
+    getBestRestaurants();
   }, []);
 
-  const getBestRestaurants =  () => {
-      const url = 'https://luna-dhmp.propulsion-learn.ch/backend/api/home/';
+  const getBestRestaurants = () => {
+    const url = "https://luna-dhmp.propulsion-learn.ch/backend/api/home/";
 
-      const method = 'GET'; 
+    const method = "GET";
 
-      const config = {
-          method : method,
-      }
+    const config = {
+      method: method,
+    };
 
-      fetch(url, config)
+    fetch(url, config)
       .then((res) => res.json())
-      .then((data) => setBestRated(data)) 
-  }
+      .then((data) => setBestRated(data));
+  };
 
   let state = {
     bestRated: bestRated,
@@ -38,33 +37,38 @@ const BestRatedRestaurants = () => {
 
   const history = useHistory();
 
-  const handleClickOnResto = id => {
+  const handleClickOnResto = (id) => {
     history.push(`/restaurant/${id}/`);
-  }
-
+  };
 
   return (
     <BestRated>
-        <FormTitle>BEST RATED RESTAURANTS</FormTitle>
-        <UnderLineTitle/>
-  
-        <BestRatedBody>
-        { state.bestRated?
-            state.bestRated.map((restaurant,index) =>{
+      <FormTitle>BEST RATED RESTAURANTS</FormTitle>
+      <UnderLineTitle />
+
+      <BestRatedBody>
+        {state.bestRated ? (
+          state.bestRated.map((restaurant) => {
             return (
-            <div key={index} id='RestaurantPreview' onClick={() => handleClickOnResto(index)}>
-                  <RestaurantPreview 
-                  restaurant_name={restaurant.name} 
-                  restaurant_address={`${restaurant.street}, ${restaurant.zip} ${restaurant.city}`} 
-                  restaurant_nReviews={restaurant.num_of_reviews} 
+              <div
+                key={restaurant.id}
+                id="RestaurantPreview"
+                onClick={() => handleClickOnResto(restaurant.id)}
+              >
+                <RestaurantPreview
+                  restaurant_name={restaurant.name}
+                  restaurant_address={`${restaurant.street}, ${restaurant.zip} ${restaurant.city}`}
+                  restaurant_nReviews={restaurant.num_of_reviews}
                   restaurant_rating={restaurant.rating_sum}
-                  restaurant_picture = {restaurant.image}/>
-            </div>
-            ) 
-          }) :
+                  restaurant_picture={restaurant.image}
+                />
+              </div>
+            );
+          })
+        ) : (
           <div>Nothing to show</div>
-        }
-        </BestRatedBody> 
+        )}
+      </BestRatedBody>
     </BestRated>
   );
 };
