@@ -13,7 +13,7 @@ const ReviewsBodyContainer = styled.div`
     #reviewContainer{
         margin: 20px;
         width: 271px;
-        height: 410px;
+        height: 411px;
         overflow: hidden;
     }
 `;

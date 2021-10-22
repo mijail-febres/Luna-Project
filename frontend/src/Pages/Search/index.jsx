@@ -7,10 +7,11 @@ import SearchContainer from "./indexStyled";
 import SearchSubHeader from "../../components/SearchSubheader/SearchSubheader";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRestaurants, setUsers } from '../../store/actions';
+import { setRestaurants, setUsers, setSearch } from '../../store/actions';
 import NavigationSubheader from "../../components/NavigationSubheader/NavigationSubheader";
+import store from '../../store/index'
 
-function Search(props) {
+const Search = (props) => {
   const dispatch = useDispatch();
   const[restaurantsList,setListRestaurants] = useState([]);
   const[reviewsList,setListReviews] = useState([]);
@@ -19,13 +20,21 @@ function Search(props) {
   const[item,setSearchItem] = useState('');
 
   useEffect(() => {
-    getRestaurantsInformation();
+    let newState =store.getState();
+    if (newState.restaurants.search === '') {
+      getRestaurantsInformation();
+    } else {
+      if (indexItem === 0) {
+        searchItem(newState.restaurants.search)
+      }
+    }
     getReviewsInformation();
     getUsersInformation();
   }, []);
 
   const onClick = (index) => {
     setIndexItem(parseInt(index));
+    dispatch(setSearch(''));
   }
 
   const onChange = (item) => {
@@ -88,6 +97,7 @@ function Search(props) {
         setListUsers(data)
         break;
     }
+    console.log('data',data)
   }
 
   const getRestaurantsInformation = async () => {
@@ -120,7 +130,6 @@ function Search(props) {
     const response = await fetch(url, config);  //fething
     const data     = await response.json();  // getting the user
 
-    // dispatch(setRestaurants(data)) // update restaurant list with middleware
     setListReviews(data)
   }
 

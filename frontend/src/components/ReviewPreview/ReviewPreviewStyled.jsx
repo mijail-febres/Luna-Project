@@ -6,7 +6,7 @@ const ReviewPreviewContainer = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     border-top: #E47D31 5px solid;
     font-family: Helvetica;
@@ -88,35 +88,43 @@ const ReviewPreviewContainer = styled.div`
     #footer {
         width: 100%;
         height: 189px;
+        min-height: 40%;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
         #buttons_footer{
             width: 100%;
-            height: 66px;
+            height: 20%;
+            min-height: 20%;
             display: flex;
             justify-content: center;
             align-items: center;
+            #button_left{
+                display:flex;
+                justify-content: center;
+                #icon_like {
+                    height: 65%;
+                    padding: 0px 10px 0px 0px;
+                }
 
-            #icon_like {
-                height: 65%;
-                padding: 0px 10px 0px 0px;
             }
         }
         #latest_comments {
             width: 100%;
-            height: 122px;
-            overflow: hidden;
+            height: 80%;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 0px 0px 0px;
             #label_comments {
+                height: 20%;
                 font-weight: 300;
                 font-size: 20px;
             }
             .Comments{
                 width: 100%;
-                height: 115px;
+                height: 80%;
                 display: flex;
                 box-sizing: border-box;
                 flex-direction: column;

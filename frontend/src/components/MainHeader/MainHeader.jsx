@@ -20,6 +20,8 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../store/actions";
+import { SignUpButtonLeft } from "../DefaultButton/DefaultButtonStyled";
+import { SignUpButtonRight } from "../DefaultButton/DefaultButtonStyled";
 
 export const MainHeaderWrapper = styled.div`
   position: fixed;
@@ -80,22 +82,22 @@ const MainHeader = () => {
             </Link>
           </Profile>
           <Buttons>
-            <SignUp>
+            <SignUpButtonLeft id='button_left'>
               <Link to="/registration" className="mainHeaderLinkSignUpLogin">
                 SIGNUP
               </Link>
-            </SignUp>
+            </SignUpButtonLeft>
             <Line />
             {token ? (
-              <Login onClick={handleLogout}>
+              <SignUpButtonRight className='button_right' onClick={handleLogout}>
                 <div className="mainHeaderLinkSignUpLogin">LOGOUT</div>
-              </Login>
+              </SignUpButtonRight>
             ) : (
-              <Login>
+              <SignUpButtonRight className='ButtonRight'>
                 <Link to="/login" className="mainHeaderLinkSignUpLogin">
                   LOGIN
                 </Link>
-              </Login>
+              </SignUpButtonRight>
             )}
           </Buttons>
         </HeaderRight>

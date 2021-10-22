@@ -8,16 +8,19 @@ import {
   SearchButton,
 } from "../SearchHomepage/SearchHomepageStyled";
 import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import laderachpic from "../../assets/LaderachPic.png";
+import { setSearch } from '../../store/actions';
 
 const SearchHomepage = (props) => {
+  const dispatch = useDispatch();
   const [HomeSearch, setHomeSearch] = useState("");
   const history = useHistory();
 
   const onChange = (event) => {
     setHomeSearch(event.target.value);
-    console.log(HomeSearch);
+    dispatch(setSearch(event.target.value));
   };
 
   const handleSearchClick = (event) => {
@@ -35,6 +38,7 @@ const SearchHomepage = (props) => {
             onChange={(e) => {
               onChange(e);
             }}
+            value={HomeSearch}
           />
           <SearchButton onClick={handleSearchClick}>Search</SearchButton>
         </SearchBar>
