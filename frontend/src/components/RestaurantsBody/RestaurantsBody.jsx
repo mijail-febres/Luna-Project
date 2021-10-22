@@ -3,11 +3,12 @@
 // This container can be accessed without authentication
 import RestaurantsBodyContainer from './RestaurantsBodyStyled';
 import RestaurantPreview from '../RestaurantPreview/RestaurantPreview';
+import { useHistory } from "react-router-dom";
 
 const RestaurantsBody = ({restaurantsList}) => {
-
-    const handleClickOnRestaurant = (index) => {
-        //redirect to page of restaurant
+    const history = useHistory();
+    const handleClickOnRestaurant = (id) => {
+        history.push(`/restaurant/${id}/`);
     }
 
     return(
@@ -15,7 +16,7 @@ const RestaurantsBody = ({restaurantsList}) => {
             {restaurantsList?
                 restaurantsList.map((restaurant,index) =>{
                     return (
-                        <div key={index} id='restaurantContainer' onClick={index => handleClickOnRestaurant(index)}>
+                        <div key={index} id='restaurantContainer' onClick={() => handleClickOnRestaurant(restaurant.id)}>
                             <RestaurantPreview 
                             restaurant_name={restaurant.name}
                             restaurant_address={`${restaurant.street}, ${restaurant.zip} ${restaurant.city}`} 
