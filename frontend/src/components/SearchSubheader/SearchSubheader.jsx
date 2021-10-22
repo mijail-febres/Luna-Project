@@ -6,13 +6,16 @@ import {
   SelectCategory,
 } from "../SearchSubheader/SearchSubheaderStyled";
 
-const SearchSubHeader = () => {
+const SearchSubHeader = (props) => {
+  const handleChange = (event) => {
+    props.onChange(event.target.value)
+  }
   return (
     <SearchHeader>
       <SearchField
         placeholder="         Search"
         // value= {this.state.query} //use this for logic 
-        //onChange= //{this.handleSearch} //use this for logic 
+        onChange= {(event) => handleChange(event)} //use this for logic 
       />
       <LineBetween />
       <SelectCategory

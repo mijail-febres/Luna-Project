@@ -57,7 +57,8 @@ const BestRatedRestaurants = () => {
                   restaurant_name={restaurant.name} 
                   restaurant_address={`${restaurant.street}, ${restaurant.zip} ${restaurant.city}`} 
                   restaurant_nReviews={restaurant.num_of_reviews} 
-                  restaurant_rating={restaurant.rating_sum}/>
+                  restaurant_rating={restaurant.rating_sum}
+                  restaurant_picture = {restaurant.image}/>
             </div>
             ) 
           }) :

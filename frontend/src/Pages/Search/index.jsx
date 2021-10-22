@@ -11,9 +11,10 @@ import NavigationSubheader from "../../components/NavigationSubheader/Navigation
 
 function Search(props) {
   const dispatch = useDispatch();
-  const[restaurantsList,setList] = useState([]);
+  const[restaurantsList,setListRestaurants] = useState([]);
   const[usersList,setListUsers] = useState([]);
-  const[indexItem,setIndexItem] = useState(1);
+  const[indexItem,setIndexItem] = useState(0);
+  const[item,setSearchItem] = useState('');
 
   useEffect(() => {
     getRestaurantsInformation();
@@ -23,6 +24,58 @@ function Search(props) {
   const onClick = (index) => {
     setIndexItem(parseInt(index));
   }
+
+  const onChange = (item) => {
+    setSearchItem(item);
+    searchItem(item)
+  }
+
+  const searchItem = async (item) => {
+    
+    const url = 'https://luna-dhmp.propulsion-learn.ch/backend/api/search/';
+
+    const method = 'POST'; // method
+
+    let type = '';
+    
+    switch (indexItem) {
+      case 0:
+        type = 'restaurants';
+        break;
+      case 1:
+        type = 'reviews';
+        break;
+      case 2:
+        type = 'users';
+        break;
+    }
+
+    const body = {  // body
+        'type': type,
+        'search': item,
+    }
+
+    const config = { // configuration
+      method : method,
+      body : JSON.stringify(body)
+    }
+
+    const response = await fetch(url, config);  //fething
+    const data     = await response.json();  // getting the user
+
+    console.log(data)
+    switch (indexItem) {
+      case 0:
+        setListRestaurants(data)
+        break;
+      case 1:
+        break;
+      case 2:
+        setListUsers(data)
+        break;
+    }
+  }
+
 
   const getRestaurantsInformation = async () => {
     
@@ -38,7 +91,7 @@ function Search(props) {
     const data     = await response.json();  // getting the user
 
     dispatch(setRestaurants(data)) // update restaurant list with middleware
-    setList(data)
+    setListRestaurants(data)
   }
 
   const getUsersInformation = async () => {
@@ -64,7 +117,7 @@ function Search(props) {
         <MainHeader/>
       </div>
       <div id = 'searchHeader'>
-          <SearchSubHeader/>
+          <SearchSubHeader onChange={e => {onChange(e)}}/>
       </div>
       <div id = 'navigationSubheader'>
           <NavigationSubheader onClick={e => {onClick(e)}}/>
@@ -77,7 +130,7 @@ function Search(props) {
                 <RestaurantsBody restaurantsList={restaurantsList}/>
               </div>
             :  
-              null
+            null
         :
           indexItem === 1?
             null

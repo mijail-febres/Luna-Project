@@ -1,4 +1,3 @@
-
 // This Component shows a list of users arranged in columns
 // It is called like: <UserBody></UserBody>
 // This container can be accessed without authentication
@@ -44,6 +43,7 @@ const UsersBody = ({usersList}) => {
                     <div key={index} id='userContainer' onClick={index => handleClickOnUser(index)}>
                         <UserPreview 
                             user_name={`${user.username}` }
+                            user_picture={user.profile_picture}
                             user_nReviews={user.total_reviews} 
                             description={user.description}
                         >

@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import user_picture from "../../assets/userPicture.png"
 
 const UserPreviewContainer = styled.div`
     width: 270px; 
     height: 192px;
-    box-sizing: content-box;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,9 +23,10 @@ const UserPreviewContainer = styled.div`
             width: 25%;
             height: 100%;
             display: flex;
-            background-image: ${`url(${user_picture})`};
+            background-image: ${({image}) =>`url(${image})`};
             background-repeat: no-repeat;
             background-size: cover;
+            background-position: center;
         }
         #userInfo{
             width: 75%;
@@ -59,22 +59,23 @@ const UserPreviewContainer = styled.div`
         font-weight: 700;
         font-size: 14px;
         color: #4C4C4C;
-        #decription{
+        #description{
             width: 100%;
-            /* :hover{
-                cursor: crosshair;
-            } */
-        }
-        #link {
-            color: #E47D31;
-            text-decoration: none;
-            align-content: flex-end;
-            text-align: right;
-            align-self: flex-end;
-            /* :hover{
-                cursor: pointer;
-            } */
-            
+            height: 80px;
+            font-family: Helvetica;
+            font-weight: 700;
+            font-size: 14px;
+            color: #4C4C4C;
+            #link {
+                color: #E47D31;
+                text-decoration: none;
+                align-content: flex-end;
+                text-align: right;
+                align-self: flex-end;
+                :hover{
+                    cursor: pointer;
+                }
+            }
         }
     }
         

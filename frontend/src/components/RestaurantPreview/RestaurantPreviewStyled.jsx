@@ -36,8 +36,8 @@ const RestaurantPreviewContainer = styled.div`
         display: flex;
         background-image: ${({image})=>`url(${image})`};
         background-repeat: no-repeat;
-        background-size: cover;
         background-size: contain;
+        background-position: center;
     }
         
 `

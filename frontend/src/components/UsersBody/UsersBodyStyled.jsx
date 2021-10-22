@@ -14,9 +14,6 @@ const UsersBodyContainer = styled.div`
         margin: 20px;
         height: 200px;
         overflow: hidden;
-        :hover {
-            cursor: pointer;
-        }
     }
 `;
 
