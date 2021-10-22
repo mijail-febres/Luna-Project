@@ -10,9 +10,37 @@ export const UserNavigationRow = styled.div`
   height: 46.75px;
   display: flex;
   background: white;
+  box-shadow: none;
   /* justify-content: center; */
   align-items: center;
   border-bottom: 1px gray solid;
+`;
+
+export const UserNavigataionRowOne = styled(UserNavigationRow)`
+  box-shadow: ${(props) =>
+    props.stage === 0 ? "-5px 0px 0px 0px orange" : "none"};
+  background: ${(props) =>
+    props.stage === 0 ? "rgba(0, 0, 0, 0.0837013)" : "none"};
+`;
+export const UserNavigataionRowTwo = styled(UserNavigataionRowOne)`
+  box-shadow: ${(props) =>
+    props.stage === 1 ? "-5px 0px 0px 0px orange" : "none"};
+  background: ${(props) =>
+    props.stage === 1 ? "rgba(0, 0, 0, 0.0837013)" : "none"};
+`;
+
+export const UserNavigataionRowThree = styled(UserNavigataionRowOne)`
+  box-shadow: ${(props) =>
+    props.stage === 2 ? "-5px 0px 0px 0px orange" : "none"};
+  background: ${(props) =>
+    props.stage === 2 ? "rgba(0, 0, 0, 0.0837013)" : "none"};
+`;
+
+export const UserNavigataionRowFour = styled(UserNavigataionRowOne)`
+  box-shadow: ${(props) =>
+    props.stage === 3 ? "-5px 0px 0px 0px orange" : "none"};
+  background: ${(props) =>
+    props.stage === 3 ? "rgba(0, 0, 0, 0.0837013)" : "none"};
 `;
 
 export const UserNavigationRowText = styled.div`
