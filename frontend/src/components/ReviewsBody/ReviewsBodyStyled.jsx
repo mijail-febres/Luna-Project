@@ -10,9 +10,10 @@ const ReviewsBodyContainer = styled.div`
     flex-wrap: wrap;
     background-color: #f2f2f2;
     overflow: auto;
-    #userContainer{
+    #reviewContainer{
         margin: 20px;
-        height: 200px;
+        width: 271px;
+        height: 410px;
         overflow: hidden;
     }
 `;

@@ -46,10 +46,12 @@ const ReviewPreview = ({user_name, user_picture, user_nReviews, restaurant_name,
                     <span id='label_comments'>Latest Comments</span>
                     {comments.length>0?
                         comments.map((comment,index) => {
-                            <div key={index} className='comments'>
-                                <span className='comment_author'>{comment.author_comment}</span>
-                                <span className='comment_content'>{comment.text_content}</span>
-                            </div>
+                            return(
+                                <div key={index} className='Comments'>
+                                    <span className='comment_author'>{comment.author_comment.username}</span>
+                                    <span className='comment_content'>{comment.text_content}</span>
+                                </div>
+                            )
                         })
                     :
                         null

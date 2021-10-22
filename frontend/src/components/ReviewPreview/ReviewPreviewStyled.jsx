@@ -114,13 +114,14 @@ const ReviewPreviewContainer = styled.div`
                 font-weight: 300;
                 font-size: 20px;
             }
-            .comments{
+            .Comments{
                 width: 100%;
-                height: 36px;
+                height: 115px;
                 display: flex;
+                box-sizing: border-box;
                 flex-direction: column;
-                justify-content: center;
-                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 10px 0px 0px 0px;
                 .comment_author {
                     color: #E47D31;
                     font-family: Helvetica;

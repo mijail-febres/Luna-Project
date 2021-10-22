@@ -32,6 +32,13 @@ const SearchContainer = styled.div`
       overflow-X: hidden;
       box-sizing: content-box;
     }
+    #reviews {
+      height: calc(100vh - 71px - 50px - 58px - 3px - 92px); 
+      width: 100%; 
+      overflow-Y: auto; 
+      overflow-X: hidden;
+      box-sizing: content-box;
+    }
     #users {
       height: calc(100vh - 71px - 50px - 58px - 3px - 92px); 
       width: 100%; 
