@@ -62,6 +62,24 @@ export const Buttons = styled.div`
   width: 30%;
   align-items: center;
   justify-content: center;
+  #button_left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .mainHeaderLinkSignUpLogin {
+      text-decoration: none;
+      color: #ffffff;
+    }
+  }
+  .ButtonRight{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .mainHeaderLinkSignUpLogin {
+      text-decoration: none;
+      color: #ffffff;
+    }
+  }
 `;
 
 //Signup button
@@ -76,11 +94,6 @@ export const SignUp = styled.div`
   border-bottom-left-radius: 40%;
   border-top-left-radius: 40%;
   cursor: pointer;
-
-  .mainHeaderLinkSignUpLogin {
-    text-decoration: none;
-    color: #ffffff;
-  }
 `;
 
 export const Line = styled.div`

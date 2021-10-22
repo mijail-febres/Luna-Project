@@ -83,6 +83,14 @@ export const setUsers = (users) => (dispatch, getState) => {
     dispatch(action)
 };
 
+export const setSearch = (search) => (dispatch, getState) => {
+    const action = {
+        type: "setSearch",
+        payload: search,
+    };
+    dispatch(action)
+};
+
 export const setRestaurantRating = (rating) => (dispatch, getState) => {
     const action = {
         type: "setRestaurantRating",

@@ -32,13 +32,13 @@ const ReviewPreview = ({user_name, user_picture, user_nReviews, restaurant_name,
             </div>
             <div id='body'>
                 <span id='restaurant_name'>{restaurant_name}</span>
-                <p id='review'>{ `${contentReview.slice(0, length)}...`}<a><Link id='link' to="/profile/">read more</Link></a></p>
+                <p id='review'>{`${contentReview.slice(0, length)}...`}{contentReview? contentReview.length>length?<a><Link id='link' to="/profile/">read more</Link></a>:'':''}</p>
             </div>
             <div id='footer'>
                 <div id='buttons_footer'>
-                    <LikeButtonLeft>
+                    <LikeButtonLeft id='button_left'>
                         <img id='icon_like' src={icon_like} alt='icon like'/>
-                        {`Like ${likes}`}
+                        <span>{`Like ${likes}`}</span>
                     </LikeButtonLeft>
                     <LikeButtonRight>{`Comment ${comments_count}`}</LikeButtonRight>
                 </div>
@@ -46,12 +46,14 @@ const ReviewPreview = ({user_name, user_picture, user_nReviews, restaurant_name,
                     <span id='label_comments'>Latest Comments</span>
                     {comments.length>0?
                         comments.map((comment,index) => {
-                            return(
-                                <div key={index} className='Comments'>
-                                    <span className='comment_author'>{comment.author_comment.username}</span>
-                                    <span className='comment_content'>{comment.text_content}</span>
-                                </div>
-                            )
+                            if (index < 2) {
+                                return(
+                                    <div key={index} className='Comments'>
+                                        <span className='comment_author'>{comment.author_comment.username}</span>
+                                        <span className='comment_content'>{comment.text_content}</span>
+                                    </div>
+                                );
+                            }
                         })
                     :
                         null

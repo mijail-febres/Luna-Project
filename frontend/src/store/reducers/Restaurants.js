@@ -4,6 +4,7 @@ import { setRestaurantRating } from "../actions";
 const initialState = {
   restaurantsList: null,
   restaurantRating: 0,
+  search: '',
 };
 
 const restaurants = (state = initialState, action) => {
@@ -16,6 +17,10 @@ const restaurants = (state = initialState, action) => {
       const new_restaurantRating = {...state};
       new_restaurantRating.restaurantRating = action.payload;
       return new_restaurantRating;
+    case 'setSearch':
+      const new_search = {...state};
+      new_search.search = action.payload;
+      return new_search;
     default:
       return state;
   }

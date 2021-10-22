@@ -79,3 +79,23 @@ width: 200px;
 height: 39px;
 font-size: 16px;
 `;
+
+export const SignUpButtonLeft = styled(LikeButton)`
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    margin: 0px 1px 0px 0px;
+    background: #e47d31;
+    color: #ffffff;
+    width: 100px;
+    height: 41px;
+`
+
+export const SignUpButtonRight = styled(LikeButton)`
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 28px;
+    margin: 0px 0px 0px 1px;
+    background: #e47d31;
+    color: #ffffff;
+    width: 100px;
+    height: 41px;
+`;
