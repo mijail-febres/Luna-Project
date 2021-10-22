@@ -1,6 +1,7 @@
 import MainHeader from "../../components/MainHeader/MainHeader"
 import MainFooter from "../../components/MainFooter/MainFooter"
 import RestaurantsBody from "../../components/RestaurantsBody/RestaurantsBody";
+import ReviewsBody from "../../components/ReviewsBody/ReviewsBody";
 import UsersBody from "../../components/UsersBody/UsersBody";
 import SearchContainer from "./indexStyled";
 import SearchSubHeader from "../../components/SearchSubheader/SearchSubheader";
@@ -12,12 +13,14 @@ import NavigationSubheader from "../../components/NavigationSubheader/Navigation
 function Search(props) {
   const dispatch = useDispatch();
   const[restaurantsList,setListRestaurants] = useState([]);
+  const[reviewsList,setListReviews] = useState([]);
   const[usersList,setListUsers] = useState([]);
   const[indexItem,setIndexItem] = useState(0);
   const[item,setSearchItem] = useState('');
 
   useEffect(() => {
     getRestaurantsInformation();
+    getReviewsInformation();
     getUsersInformation();
   }, []);
 
@@ -26,8 +29,14 @@ function Search(props) {
   }
 
   const onChange = (item) => {
-    setSearchItem(item);
-    searchItem(item)
+    if (item == '') {
+      getRestaurantsInformation();
+      getReviewsInformation();
+      getUsersInformation();
+    } else {
+      setSearchItem(item);
+      searchItem(item)
+    }
   }
 
   const searchItem = async (item) => {
@@ -50,32 +59,36 @@ function Search(props) {
         break;
     }
 
+    const headers = new Headers({
+      "Content-Type": "application/json",
+    });
+
     const body = {  // body
-        'type': type,
-        'search': item,
+      'type': type,
+      'search_string': item,
     }
 
     const config = { // configuration
       method : method,
-      body : JSON.stringify(body)
+      body : JSON.stringify(body),
+      headers,
     }
 
     const response = await fetch(url, config);  //fething
     const data     = await response.json();  // getting the user
 
-    console.log(data)
     switch (indexItem) {
       case 0:
         setListRestaurants(data)
         break;
       case 1:
+        setListReviews(data)
         break;
       case 2:
         setListUsers(data)
         break;
     }
   }
-
 
   const getRestaurantsInformation = async () => {
     
@@ -92,6 +105,23 @@ function Search(props) {
 
     dispatch(setRestaurants(data)) // update restaurant list with middleware
     setListRestaurants(data)
+  }
+
+  const getReviewsInformation = async () => {
+    
+    const url = 'https://luna-dhmp.propulsion-learn.ch/backend/api/reviews/all/';
+
+    const method = 'GET'; // method
+
+    const config = { // configuration
+      method : method,
+    }
+
+    const response = await fetch(url, config);  //fething
+    const data     = await response.json();  // getting the user
+
+    // dispatch(setRestaurants(data)) // update restaurant list with middleware
+    setListReviews(data)
   }
 
   const getUsersInformation = async () => {
@@ -133,6 +163,11 @@ function Search(props) {
             null
         :
           indexItem === 1?
+            reviewsList?
+              <div id = 'reviews'>
+                <ReviewsBody reviewsList={reviewsList}/>
+              </div>
+            :
             null
           :
             indexItem===2?
