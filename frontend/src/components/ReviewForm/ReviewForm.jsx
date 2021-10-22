@@ -61,7 +61,7 @@ const ReviewForm = ({id_restaurant, token}) => {
         <ReviewFormContainer>
             <div id='main'>
                 <div id='header'>
-                    <StarRating height='44' width='250' review='true' stars='3' />
+                    <StarRating height='44' width='220' review='true' stars='3' />
                     <span id='selectRating'>Select your rating</span>
                 </div>
                 <div id='body'>
