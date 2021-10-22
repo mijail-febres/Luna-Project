@@ -1,19 +1,37 @@
 import styled from "styled-components";
 
 export const RestaurantWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    background: #F2F2F2;
-`
+  display: flex;
+  flex-direction: column;
+  background: #f2f2f2;
+`;
 
 export const RestaurantReviewsInfo = styled.div`
-    width: 100vw;
-    height:100vh;
-    display:flex;
-    position: absolute;
-    top: 43vh;
-    flex-direction: row;
-    z-index: -1;
-    background: #F2F2F2;
-    padding-top: 15px;
-`
+  display: flex;
+  width: 100vw;
+  position: absolute;
+  top: 43vh;
+  flex-direction: row;
+  background: #f2f2f2;
+  //padding-top: 15px;
+`;
+
+export const RestaurantRevWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: white;
+  /* margin-top: 8vh; */
+  width: 45vw;
+  position: absolute;
+  top: 5vh;
+  left: 9vw;
+  z-index: 0;
+
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-color: transparent transparent;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;

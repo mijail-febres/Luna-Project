@@ -4,7 +4,7 @@ import {
   FilterReviewsWrapper,
   SearchBar,
   SearchInput,
-  FilterButton
+  FilterButton,
 } from "./FilterReviewsStyled";
 
 //import { RestaurantInfoGenericButton } from "../DefaultButton/DefaultButtonStyled";

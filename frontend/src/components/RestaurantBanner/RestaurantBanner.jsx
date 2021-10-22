@@ -5,6 +5,7 @@ import googlemap from "../../assets/map.png";
 import pin from "../../assets/pin.svg";
 import phone from "../../assets/phone.svg";
 import web from "../../assets/web.svg";
+import StarRating from "../StarRating/StarRating";
 
 import {
   RestoImage,
@@ -35,19 +36,25 @@ const RestaurantBannerWrapper = styled.div`
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 5;
 `;
 
-const RestaurantBanner = () => {
+const RestaurantBanner = (props) => {
   return (
     <RestaurantBannerWrapper>
-      <RestoImage src={laderachpic} alt="laderach" />
+      <RestoImage src={props.image} alt="laderach" />
       <OpaqueOverlay>
         <NameBox>
-          <RestoName>import restoname here</RestoName>
-          <RestoCategory>import category here</RestoCategory>
+          <RestoName>{props.name}</RestoName>
+          <RestoCategory>{props.category}</RestoCategory>
           <RatingAndReviews>
-            <RestoRating>rating here</RestoRating>
-            <RestoReviews># reviews</RestoReviews>
+            <StarRating
+              height="25"
+              width="125"
+              review="false"
+              stars={props.rating}
+            />
+            <RestoReviews>{`${props.numOfReviews} Reviews`}</RestoReviews>
           </RatingAndReviews>
         </NameBox>
       </OpaqueOverlay>
@@ -55,15 +62,15 @@ const RestaurantBanner = () => {
         <GoogleMap src={googlemap} alt="location" />
         <Address>
           <Pin src={pin} alt="address" />
-          <p>address here</p>
+          <p>{props.country}</p>
         </Address>
         <Phone>
           <PhoneImg src={phone} alt="phone number" />
-          <p>phone number here</p>
+          <p>{props.phone}</p>
         </Phone>
         <Website>
           <WebsiteImg src={web} alt="website" />
-          <p>website here</p>
+          <p>{props.website}</p>
         </Website>
       </AddressBox>
     </RestaurantBannerWrapper>
