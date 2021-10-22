@@ -2,21 +2,30 @@ import styled from "styled-components";
 
 export const RestaurantReviewsWrapper = styled.div`
     width: 45vw;
-    position: absolute;
     left: 9vw;
+    //height: 30vh;
     display:flex;
     flex-direction: column;
 `
 
-export const UserReviewWrapper = styled.div`
-    display: flex;
+// export const UserReviewWrapper = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     background: white;
+//     overflow: auto;
+//     scroll-behavior: smooth;
+//     margin-top: 5vh;
+//     justify-content: space-between;
+//     height: 100%;
+// `
+
+export const UserReview = styled.div`
+    display:flex;
+    width:100%;
+    //height:100%;
+    background:white;
     flex-direction: column;
-    background: white;
-    overflow: auto;
-    scroll-behavior: smooth;
-    position: absolute;
-    left: 0vh;
-    top: 5vh;
+    margin-bottom: 1vh;
 `
 
 export const UserProfile = styled.div`
@@ -95,4 +104,9 @@ export const ViewComments = styled.div`
     color: #E47D31;
     font-size: 16px;
     margin-right: 8px;
+`
+
+export const Line = styled(LineBetween)`
+    display: flex;    
+    width: 100%;
 `

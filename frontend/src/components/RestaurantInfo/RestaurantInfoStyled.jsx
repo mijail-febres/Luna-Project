@@ -4,6 +4,7 @@ export const RestaurantInfoWrapper = styled.div`
   width: 42vw;
   position: fixed;
   left:55vw;
+  top: 45vh;
 `;
 
 export const RestaurantInfoRow = styled.div`

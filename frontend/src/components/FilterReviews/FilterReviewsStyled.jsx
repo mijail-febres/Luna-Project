@@ -5,6 +5,7 @@ export const FilterReviewsWrapper = styled.div`
   width: 45vw;
   display: flex;
   position: fixed;
+  top:45vh;
   align-items: center;
   left: 9vw;
 `;

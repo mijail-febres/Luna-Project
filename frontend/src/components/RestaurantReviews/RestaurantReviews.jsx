@@ -1,7 +1,9 @@
 import React from "react";
+// import { useState } from "react";
 import {
     RestaurantReviewsWrapper,
     UserReviewWrapper,
+    UserReview,
     UserProfile,
     Avatar,
     NameAndNumberReviews,
@@ -14,6 +16,7 @@ import {
     CommentsAndLikes,
     ButtonWrapper,
     ViewComments,
+    Line,
 } from "../RestaurantReviews/RestaurantReviewsStyled";
 import like from "../../assets/like.png";
 import line from '../../assets/LineUserReview.png';
@@ -23,40 +26,49 @@ import {
     LikeButtonLeft,
     LikeButtonRight
  } from "../DefaultButton/DefaultButtonStyled";
+import StarRating from '../StarRating/StarRating';
 
 
-const RestaurantReviews = () => {
+const RestaurantReviews = (props) => {
 
+  const handleClickReview = () => {
+     //just a placeholder for now. this should trigger css change to show relevant comments on review
+    console.log();
+  }
+  
   return (
       <RestaurantReviewsWrapper>
-        <FilterReviews/>
-        <UserReviewWrapper>
+            <UserReview>
                 <UserProfile>
-                    <Avatar/>
+                    <Avatar src={props.avatar} alt="avatar"/>
                     <NameAndNumberReviews>
-                        <Name>Laurent H</Name>
-                        <NumberReviews> # reviews </NumberReviews>
+                        <Name>{props.name}</Name>
+                        <NumberReviews> {props.total_reviews} reviews </NumberReviews>
                     </NameAndNumberReviews>
-                    <StarsGiven>STAR STAR STAR</StarsGiven>
-                    <DateCreated>01.04.2021</DateCreated>
+                    <StarsGiven>
+                        <StarRating height='25' width='125' review='false' stars={props.rating} />
+                    </StarsGiven>
+                    <DateCreated>{props.created}</DateCreated>
                 </UserProfile>
                 <LineBetween src={line} alt=""/>
-                <ReviewText>This location at the Bahnhofstrasse is quite friendly and easily located across the street from the train station. 
-                    The people there seem to be quite good and helpful in their service.
+                <ReviewText>{props.text_content}
                 </ReviewText>
                 <CommentsAndLikes>
                     <ButtonWrapper>
                         <LikeButtonLeft>
                             <img src={like} alt="thumbs up" />
-                            # likes
+                            {props.like_count} likes
                         </LikeButtonLeft>
                         <LikeButtonRight>
-                            Comments #
+                            Comments {props.comments}
                         </LikeButtonRight>
                     </ButtonWrapper>
-                    <ViewComments>View all comments</ViewComments>
+                    <ViewComments
+                     onClick={() => handleClickReview()}
+                    >View all comments</ViewComments>
                 </CommentsAndLikes>
-        </UserReviewWrapper>
+            </UserReview>
+            <Line src={line} alt=""/>
         {/* <CreateReviewComment/> */}
       </RestaurantReviewsWrapper>
   );

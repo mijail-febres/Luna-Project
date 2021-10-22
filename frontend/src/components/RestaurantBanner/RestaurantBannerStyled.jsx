@@ -13,7 +13,7 @@ export const RestoImage = styled.img`
   position: absolute;
   top: 71px;
   object-fit: cover;
-  z-index: 0;
+  z-index: 10;
 `;
 
 export const OpaqueOverlay = styled.div`

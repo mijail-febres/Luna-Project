@@ -1,7 +1,7 @@
 import React from "react";
 import clock from "../../assets/clock.svg";
 import money from "../../assets/money.svg";
-
+import { useHistory } from "react-router-dom";
 import {
   RestaurantInfoWrapper,
   RestaurantInfoRow,
@@ -14,6 +14,17 @@ import {
 import { RestaurantInfoGenericButton } from "../DefaultButton/DefaultButtonStyled";
 
 const RestaurantInfo = () => {
+
+  const history = useHistory();
+
+  const handleClickReview = () => {
+    history.push(`/review/`);
+  };
+
+  const handleClickEdit = () => {
+    history.push(`/newrestaurant/`);
+  };
+
   return (
     <>
       <RestaurantInfoWrapper>
@@ -28,8 +39,12 @@ const RestaurantInfo = () => {
           <RestaurantInfoText>Price level: $$$</RestaurantInfoText>
         </RestaurantInfoRow>
         <RestaurantInfoButtonRow>
-        <RestaurantInfoGenericButton>WRITE A REVIEW</RestaurantInfoGenericButton>
-        <RestaurantInfoGenericButton>EDIT DATA</RestaurantInfoGenericButton>
+        <RestaurantInfoGenericButton
+        onClick={() => handleClickReview()}
+        >WRITE A REVIEW</RestaurantInfoGenericButton>
+        <RestaurantInfoGenericButton
+        onClick={() => handleClickEdit()}
+        >EDIT DATA</RestaurantInfoGenericButton>
         </RestaurantInfoButtonRow>
       </RestaurantInfoWrapper>
     </>
