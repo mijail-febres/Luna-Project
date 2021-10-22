@@ -60,34 +60,31 @@ const ReviewForm = ({ id_restaurant }) => {
     const data = await response.json(); // getting the user
   };
 
-  return (
-    <ReviewFormContainer>
-      <div id="main">
-        <div id="header">
-          <StarRating height="44" width="250" review="true" stars="3" />
-          <span id="selectRating">Select your rating</span>
-        </div>
-        <div id="body">
-          <textarea
-            id="review"
-            name="restauran_review"
-            rows="12"
-            onChange={handleText}
-            placeholder={ta_placehoder}
-            value={contentReview}
-          ></textarea>
-        </div>
-        <div id="footer">
-          <span id="fieldRequired" style={{ color: fontColorRequired }}>
-            This field is required
-          </span>
-          <SmallerButton disabled={buttonState} onClick={handleSubmitReview}>
-            SUBMIT
-          </SmallerButton>
-        </div>
-      </div>
-    </ReviewFormContainer>
-  );
-};
+    return (
+        <ReviewFormContainer>
+            <div id='main'>
+                <div id='header'>
+                    <StarRating height='44' width='220' review='true' stars='3' />
+                    <span id='selectRating'>Select your rating</span>
+                </div>
+                <div id='body'>
+                    <textarea 
+                        id="review" 
+                        name="restauran_review" 
+                        rows="12" 
+                        onChange={handleText}
+                        placeholder={ta_placehoder}
+                        value = {contentReview}
+                    >
+                    </textarea>
+                </div>
+                <div id='footer'>
+                    <span id="fieldRequired" style={{color: fontColorRequired}}>This field is required</span>
+                    <SmallerButton disabled={buttonState} onClick={handleSubmitReview}>SUBMIT</SmallerButton>
+                </div>
+            </div>
+        </ReviewFormContainer>
+    )
+}
 
 export default ReviewForm;
