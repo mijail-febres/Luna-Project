@@ -4,9 +4,10 @@ import {
   FilterReviewsWrapper,
   SearchBar,
   SearchInput,
+  FilterButton
 } from "./FilterReviewsStyled";
 
-import { RestaurantInfoGenericButton } from "../DefaultButton/DefaultButtonStyled";
+//import { RestaurantInfoGenericButton } from "../DefaultButton/DefaultButtonStyled";
 
 const FilterReviews = () => {
   return (
@@ -15,7 +16,7 @@ const FilterReviews = () => {
         <SearchBar>
           <SearchInput placeholder="Filter List..." />
         </SearchBar>
-        <RestaurantInfoGenericButton>Filter</RestaurantInfoGenericButton>{" "}
+        <FilterButton>Filter</FilterButton>{" "}
       </FilterReviewsWrapper>
     </>
   );

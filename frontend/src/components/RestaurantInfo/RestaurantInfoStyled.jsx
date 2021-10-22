@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
 export const RestaurantInfoWrapper = styled.div`
-  width: 600px;
+  width: 42vw;
+  position: fixed;
+  left:55vw;
 `;
 
 export const RestaurantInfoRow = styled.div`
-  width: 508px;
+  width: 85%;
   height: 50px;
   display: flex;
 `;
 
 export const RestaurantInfoButtonRow = styled.div`
-  width: 508px;
+  width: 85%;
   height: 50px;
   display: flex;
   justify-content: space-between;
