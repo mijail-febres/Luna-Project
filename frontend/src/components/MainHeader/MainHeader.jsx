@@ -17,6 +17,9 @@ import lunalogo from "../../assets/LUNA.png";
 import headerline from "../../assets/HeaderLine.png";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../store/actions";
 
 export const MainHeaderWrapper = styled.div`
   position: fixed;
@@ -26,6 +29,16 @@ export const MainHeaderWrapper = styled.div`
 `;
 
 const MainHeader = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const token = localStorage.getItem("luna-auth-token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("luna-auth-token");
+    dispatch(logOut());
+    history.push("/");
+  };
   // const homeHandler = () => {
   //     check later how
 
@@ -73,11 +86,17 @@ const MainHeader = () => {
               </Link>
             </SignUp>
             <Line />
-            <Login>
-              <Link to="/login" className="mainHeaderLinkSignUpLogin">
-                LOGIN
-              </Link>
-            </Login>
+            {token ? (
+              <Login onClick={handleLogout}>
+                <div className="mainHeaderLinkSignUpLogin">LOGOUT</div>
+              </Login>
+            ) : (
+              <Login>
+                <Link to="/login" className="mainHeaderLinkSignUpLogin">
+                  LOGIN
+                </Link>
+              </Login>
+            )}
           </Buttons>
         </HeaderRight>
       </MenuBar>
