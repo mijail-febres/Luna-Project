@@ -3,6 +3,7 @@ import { setRestaurantRating } from "../actions";
 
 const initialState = {
   restaurantsList: null,
+  reviewsList: null,
   restaurantRating: 0,
   search: '',
 };
@@ -13,6 +14,10 @@ const restaurants = (state = initialState, action) => {
       const new_restaurantsList = {...state};
       new_restaurantsList.restaurantsList = action.payload;
       return new_restaurantsList;
+    case 'setReviews':
+      const new_reviewsList = {...state};
+      new_reviewsList.reviewsList = action.payload;
+      return new_reviewsList;
     case 'setRestaurantRating':
       const new_restaurantRating = {...state};
       new_restaurantRating.restaurantRating = action.payload;

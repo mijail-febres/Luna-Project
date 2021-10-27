@@ -38,8 +38,10 @@ const StarRating = ({height, width, review, stars}) => {
     const [svgFilled, setSvgFilled] = useState('loading..');
     const [flag_decimals, setFlagDecimals] = useState(true);
     const dispatch = useDispatch();
+    const [local_stars,setLocalStars] = useState(0);
 
     useEffect(() => {
+        setLocalStars(Math.round(parseFloat(stars) * 10) / 10)
         const radius = height/2.0;
         const cx = radius;
         const cy = radius;
@@ -47,7 +49,6 @@ const StarRating = ({height, width, review, stars}) => {
         const ang2 = Math.PI/2.0 - ang1;
         let new_path = '';
         let new_path2 = '';
-        const local_stars = Math.round(stars * 10) / 10;
 
         let pp1 = [cx                          ,(cy+radius)];
         let pp2 = [cx+radius*Math.cos(ang2)    ,(cy+radius*Math.sin(ang2))];
@@ -92,10 +93,6 @@ const StarRating = ({height, width, review, stars}) => {
         }
 
         new_path += 'z'
-            //now a square
-            new_path += `M 0 0 L 0 ${2.0*radius} L ${2.0*radius} ${2.0*radius} L ${2.0*radius} 0`
-
-            new_path += 'z'
         setSvg(new_path) 
 
         if (review!=='true'){
@@ -139,51 +136,60 @@ const StarRating = ({height, width, review, stars}) => {
             <div className='Containers' id='starscontainer'>
                 {[...Array(numberStar)].map((star, index) => { 
                     return(
-                        review==='true'?
-                        <div 
-                            key={index} 
-                            className='StarContainer' 
-                            onClick={() => handleOnClick(index)}
-                            style = {{backgroundColor: index<=rating?'gold':'transparent'}}
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 className="starsvg" 
-                                 fill={'#FFFFFF'} 
-                                 style={{ width: "100%", height: "100%" }}
-                                 viewBox={`0 0 100% ${height}`} stroke="currentColor">
-                                <path strokeLinecap="round" 
-                                strokeLinejoin="round" 
-                                strokeWidth={0} 
-                                d = {svgPlot}/>
-                            </svg>
-                        </div> 
+                        review === 'true'?
+                            <div 
+                                key={index} 
+                                className='StarContainer1' 
+                                onClick={() => handleOnClick(index)}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    fill={index<=rating?'gold':'#EBEBEB'} 
+                                    style={{ width: "100%", height: "100%" }}
+                                    viewBox={`0 0 100% ${height}`} stroke="currentColor">
+                                    <path strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    strokeWidth={0} 
+                                    d = {svgPlot}/>
+                                </svg>
+                            </div> 
                         :
-                        <div 
-                            key={index} 
-                            className='StarContainer'
-                            style = {{background: 
-                                        index<Math.floor(stars)?
-                                        'linear-gradient(90deg, gold, gold)' 
-                                        :
-                                            index+1===Math.floor(stars)+1&&flag_decimals?
-                                            `linear-gradient(90deg, 
-                                                gold        ${(stars-Math.floor(stars))*100.0}%, 
-                                                transparent ${(stars-Math.floor(stars))*100.0}%)` 
-                                            :
-                                            'linear-gradient(to right, transparent, transparent)'
-                                            }}
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 className="starsvg" 
-                                 fill={'#FFFFFF'} 
-                                 style={{ width: "100%", height: "100%" }}
-                                 viewBox={`0 0 100% ${height}`} stroke="currentColor">
-                                <path strokeLinecap="round" 
-                                strokeLinejoin="round" 
-                                strokeWidth={0} 
-                                d = {svgPlot}/>
-                            </svg>
-                        </div> 
+                            flag_decimals?
+                                <div 
+                                    key={index} 
+                                    className='StarContainer1'>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        fill={index<Math.floor(local_stars)?'gold': index>local_stars?'#EBEBEB':'url(#Gradient1)'} 
+                                        style={{ width: "100%", height: "100%" }}
+                                        viewBox={`0 0 100% ${height}`} stroke="currentColor">
+                                        <defs>
+                                            <linearGradient id="Gradient1">
+                                                <stop offset="0" stopColor="gold"/>
+                                                <stop offset={`${Math.round((local_stars-Math.floor(local_stars))*10)/10}`} stopColor="gold"/>
+                                                <stop offset={`${Math.round((local_stars-Math.floor(local_stars))*10)/10}`} stopColor="#EBEBEB"/>
+                                                <stop offset='1' stopColor="#EBEBEB"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path strokeLinecap="round" 
+                                        strokeLinejoin="round" 
+                                        strokeWidth={0} 
+
+                                        d = {svgPlot}/>
+                                    </svg>
+                                </div>
+                            :
+                                <div 
+                                    key={index} 
+                                    className='StarContainer1'>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        fill={index<Math.floor(local_stars)?'gold': '#EBEBEB'} 
+                                        style={{ width: "100%", height: "100%" }}
+                                        viewBox={`0 0 100% ${height}`} stroke="currentColor">
+                                        <path strokeLinecap="round" 
+                                        strokeLinejoin="round" 
+                                        strokeWidth={0} 
+                                        d = {svgPlot}/>
+                                    </svg>
+                                </div>
                     )                
                 })}
             </div>

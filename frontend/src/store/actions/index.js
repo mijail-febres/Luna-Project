@@ -83,6 +83,13 @@ export const setUsers = (users) => (dispatch, getState) => {
     dispatch(action)
 };
 
+export const setReviews = (reviews) => (dispatch, getState) => {
+    const action = {
+        type: "setReviews",
+        payload: reviews,
+    };
+    dispatch(action)
+};
 export const setSearch = (search) => (dispatch, getState) => {
     const action = {
         type: "setSearch",

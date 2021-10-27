@@ -18,7 +18,6 @@ const ReviewsBody = ({reviewsList}) => {
     return(
         <ReviewsBodyContainer>
             {reviewsList.map((review,index) =>{
-                        {console.log('review', review)}
                 return (
                     <div key={index} id='reviewContainer' onClick={index => handleClickOnUser(index)}>
                         <ReviewPreview 

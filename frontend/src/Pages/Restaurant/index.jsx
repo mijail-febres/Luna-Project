@@ -56,6 +56,7 @@ function Restaurant() {
   return (
     <RestaurantWrapper>
       <MainHeader />
+      {restaurantInfo?
       <RestaurantBanner
         name={restaurantInfo ? restaurantInfo.name : null}
         category={restaurantInfo ? restaurantInfo.category : null}
@@ -66,6 +67,8 @@ function Restaurant() {
         website={restaurantInfo ? restaurantInfo.website : null}
         image={restaurantInfo ? restaurantInfo.image : null}
       />
+      :
+      null}
       <RestaurantReviewsInfo>
         <RestaurantRevWrapper>
           <FilterReviews />

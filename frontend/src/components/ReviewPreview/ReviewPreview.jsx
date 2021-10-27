@@ -5,16 +5,20 @@
 // <ReviewPreview user_name='Laurent H.' user_picture='' user_nReviews='6' restaurant_name='Colinz Bar' contentReview="Ugh. Don't waste your time. Pizza dough good, thin crust but ingredients so so. Side of mixed vegetables very oily and mainly bell"></ReviewPreview>
 // all data must be provided from backend
 
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import StarRating from "../StarRating/StarRating";
 import ReviewPreviewContainer from "./ReviewPreviewStyled";
 import user_default_picture from "../../assets/default-user.jpg";
 import icon_like from "../../assets/thumb-up.svg";
 import { LikeButtonLeft, LikeButtonRight } from "../DefaultButton/DefaultButtonStyled";
+import { useDispatch, useSelector } from 'react-redux';
+import { setReviews } from '../../store/actions';
 
 const ReviewPreview = ({review_id, user_name, user_picture, user_nReviews, restaurant_name, contentReview, likes, comments_count, comments}) => {
-    const [showLess, setShowLess] = React.useState(true);
+    const dispatch = useDispatch();
+    const [showLess, setShowLess] = useState(true);
+    const [loc_likes, setLikes] = useState(likes);
     const length =130;
 
     const handleOnClickLike = () => {
@@ -41,7 +45,7 @@ const ReviewPreview = ({review_id, user_name, user_picture, user_nReviews, resta
 
             const response = await fetch(url, config);  //fething
             const data     = await response.json();  // getting the user
-            // window.location.reload();
+            setLikes(data.like_count)
         }
 
     }
@@ -65,7 +69,7 @@ const ReviewPreview = ({review_id, user_name, user_picture, user_nReviews, resta
                 <div id='buttons_footer'>
                     <LikeButtonLeft id='button_left' onClick={handleOnClickLike}>
                         <img id='icon_like' src={icon_like} alt='icon like'/>
-                        <span>{`Like ${likes}`}</span>
+                        <span>{`Like ${loc_likes}`}</span>
                     </LikeButtonLeft>
                     <LikeButtonRight>{`Comment ${comments_count}`}</LikeButtonRight>
                 </div>
