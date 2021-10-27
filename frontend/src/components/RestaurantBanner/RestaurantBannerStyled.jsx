@@ -43,6 +43,7 @@ export const RestoName = styled.div`
   font-weight: bold;
   font-size: 30px;
   top: 6%;
+  background-color: transparent;
   font-family: ${(props) => props.theme.fontFamilyHeader};
 `;
 
@@ -50,16 +51,17 @@ export const RestoCategory = styled(RestoName)`
   font-weight: 300;
   font-size: 24px;
   top: 26%;
+  background-color: transparent;
 `;
 
 export const RatingAndReviews = styled.div`
   display: flex;
   position: absolute;
   flex-direction: row;
-  color: white;
   font-weight: bold;
   font-size: 30px;
   top: 45%;
+  background-color: transparent;
 `;
 
 export const RestoRating = styled.div`
@@ -69,6 +71,7 @@ export const RestoRating = styled.div`
 export const RestoReviews = styled.div`
   display: flex;
   padding-left: 15px;
+  color: white;
 `;
 
 export const AddressBox = styled.div`
