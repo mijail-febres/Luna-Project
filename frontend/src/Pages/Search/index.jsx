@@ -7,7 +7,7 @@ import SearchContainer from "./indexStyled";
 import SearchSubHeader from "../../components/SearchSubheader/SearchSubheader";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRestaurants, setUsers, setSearch } from '../../store/actions';
+import { setRestaurants, setUsers, setSearch, setReviews } from '../../store/actions';
 import NavigationSubheader from "../../components/NavigationSubheader/NavigationSubheader";
 import store from '../../store/index'
 
@@ -129,6 +129,7 @@ const Search = (props) => {
     const response = await fetch(url, config);  //fething
     const data     = await response.json();  // getting the user
 
+    dispatch(setReviews(data)) // update reviews list with middleware
     setListReviews(data)
   }
 
@@ -145,7 +146,7 @@ const Search = (props) => {
     const response = await fetch(url, config);  //fething
     const data     = await response.json();  // getting the user
 
-    dispatch(setUsers(data)) // update restaurant list with middleware
+    dispatch(setUsers(data)) // update users list with middleware
     setListUsers(data)
   }
 

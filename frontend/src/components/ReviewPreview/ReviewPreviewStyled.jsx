@@ -107,7 +107,9 @@ const ReviewPreviewContainer = styled.div`
                     height: 65%;
                     padding: 0px 10px 0px 0px;
                 }
-
+            :hover {
+                cursor: pointer;
+            }
             }
         }
         #latest_comments {
